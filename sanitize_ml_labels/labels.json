@@ -6,7 +6,8 @@
         "auprc"
     ],
     "Accuracy":[
-        "acc"
+        "acc",
+        "accuracy"
     ],
     "Learning rate":[
         "lr"

@@ -18,11 +18,15 @@ Since some software handling coverages sometime get slightly different results, 
 
 |coveralls| |sonar_coverage| |code_climate_coverage|
 
-Usage examples
-----------------------------------------------
+Why do I need this?
+-------------------
 So you have some kind of plot and you have some ML-related labels.
 Since I always rename and sanitize them the same way, I have prepared
 this package to always sanitize them in a standard fashion.
+
+Usage examples
+----------------------------------------------
+Here you have a couple of common examples: you have a set of metrics to normalize or a set of model names to normalize.
 
 .. code:: python
 
@@ -51,6 +55,25 @@ this package to always sanitize them in a standard fashion.
     sanitize_ml_labels(labels)
 
     # ["MLP", "CNN", "FFNN", "Perceptron"]
+
+
+Extra utilities
+---------------
+Since I always use metric sanitization alongside axis normalization, it is usefull to know which axis
+should be maxed between zero and one to avoid any visualization bias to the metrics.
+
+For this reason I have created the method :code:`is_normalized_metric`, which after having normalized the given metric
+validates it against known normalized metrics (metrics between 0 and 1, is there another name? I coldn't figure out a better one).
+
+.. code:: python
+
+    from sanitize_ml_labels import is_normalized_metric
+
+    is_normalized_metric("MSE") # False
+    is_normalized_metric("acc") # True
+    is_normalized_metric("accuracy") # True
+    is_normalized_metric("AUROC") # True
+    is_normalized_metric("auprc") # True
 
 
 New features and issues
