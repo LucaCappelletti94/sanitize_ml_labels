@@ -3,7 +3,7 @@ from sanitize_ml_labels import is_normalized_metric
 def test_is_normalized_metric():
     tests = {
         True: [
-            "acc", "accuracy", "Accuracy", "AUROC", "auroc", "auprc", "AUPRC"
+            "acc", "accuracy", "Accuracy", "AUROC", "auroc", "auprc", "AUPRC", "test auroc", "train auroc"
         ],
         False: [
             "MLP"

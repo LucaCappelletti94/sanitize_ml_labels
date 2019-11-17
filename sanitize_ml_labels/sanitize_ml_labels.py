@@ -101,14 +101,25 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
             for target in targets:
                 if target in label.lower():
                     replace_candidates.append((target, default))
-        # The following is required so to replace first always the best candidate.
+
+        # The following is required to avoid replacing substrings.
+        
+        replace_candidates = sorted(
+            replace_candidates,
+            key=lambda x: len(x[0]),
+            reverse=False
+        )
+
+        replace_candidates = [(j, val) for i, (j, val) in enumerate(replace_candidates) if all(j not in k.lower() for _, k in replace_candidates[i + 1:])]
+
         replace_candidates = sorted(
             replace_candidates,
             key=lambda x: len(x[0]),
             reverse=True
         )
+
         for target, default in replace_candidates:
-            label = label.replace(target, default)
+            label = re.compile(re.escape(target), re.IGNORECASE).sub(default, label)
         new_labels.append(label)
     return new_labels
 
@@ -182,6 +193,12 @@ def sanitize_ml_labels(
 
     labels = to_string(labels)
 
+    if detect_and_remove_vanilla and all_vanillas(labels):
+        labels = remove_vanilla(labels)
+
+    if soft_capitalization:
+        labels = apply_soft_capitalization(labels)
+
     if replace_defaults:
         if custom_defaults is None:
             custom_defaults = dict()
@@ -192,12 +209,6 @@ def sanitize_ml_labels(
             for key, value in custom_defaults.items()
         ])
         labels = apply_replace_defaults(labels, custom_defaults)
-
-    if detect_and_remove_vanilla and all_vanillas(labels):
-        labels = remove_vanilla(labels)
-
-    if soft_capitalization:
-        labels = apply_soft_capitalization(labels)
 
     labels = [
         targets_to_spaces(label, replace_with_spaces)
