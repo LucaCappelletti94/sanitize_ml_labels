@@ -26,7 +26,7 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-__version__ = find_version("sanitize_ml_label", "__version__.py")
+__version__ = find_version("sanitize_ml_labels", "__version__.py")
 
 test_deps =[
     "pytest",
@@ -41,11 +41,11 @@ extras = {
 }
 
 setup(
-    name='sanitize_ml_label',
+    name='sanitize_ml_labels',
     version=__version__,
     description="Simple python package to sanitize in a standard way ML-related labels.",
     long_description=long_description,
-    url="https://github.com/LucaCappelletti94/sanitize_ml_label",
+    url="https://github.com/LucaCappelletti94/sanitize_ml_labels",
     author="Luca Cappelletti",
     author_email="cappelletti.luca94@gmail.com",
     # Choose your license
