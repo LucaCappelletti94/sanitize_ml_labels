@@ -170,7 +170,13 @@ def sanitize_ml_labels(
     Sanitized labels.
     """
 
-    single_label = not isinstance(labels, list)
+    try:
+        iter(labels)
+        is_iterable = True
+    except TypeError:
+        is_iterable = False
+
+    single_label = not is_iterable or isinstance(labels, str)
     if single_label:
         labels = [labels]
 
