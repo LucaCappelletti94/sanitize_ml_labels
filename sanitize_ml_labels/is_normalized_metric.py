@@ -25,8 +25,7 @@ def is_normalized_metric(metric: str) -> bool:
     -------
     Boolean representing if given metric is known to be between 0 and 1.
     """
-    sanitized_metric = sanitize_ml_labels((metric,))
-    print(sanitized_metric)
+    sanitized_metric = sanitize_ml_labels(metric)
     return any(
         candidate in sanitized_metric
         for candidate in load_normalized_metrics()

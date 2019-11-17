@@ -129,6 +129,7 @@ def apply_soft_capitalization(labels: List[str]) -> List[str]:
         for label in labels
     ]
 
+
 def to_string(labels: List[str]) -> List[str]:
     """Convert all labels to strings."""
     return [
@@ -138,7 +139,7 @@ def to_string(labels: List[str]) -> List[str]:
 
 
 def sanitize_ml_labels(
-    labels: List[str],
+    labels: Union[List[str], str],
     upper_case_consonants_clusters: bool = True,
     replace_with_spaces: List[str] = ("-", "_"),
     detect_and_remove_vanilla: bool = True,
@@ -150,8 +151,8 @@ def sanitize_ml_labels(
 
     Parameters
     ----------
-    labels: List[str],
-        List of labels to sanitize.
+    labels: Union[List[str], str],
+        Wither label or list of labels to sanitize.
     upper_case_consonants_clusters: bool = True,
         Whetever to convert to upper case detected initials.
     replace_with_spaces: List[str] = ("-", "_"),
@@ -168,6 +169,10 @@ def sanitize_ml_labels(
     -------
     Sanitized labels.
     """
+
+    single_label = not isinstance(labels, list)
+    if single_label:
+        labels = [labels]
 
     labels = to_string(labels)
 
@@ -201,4 +206,6 @@ def sanitize_ml_labels(
 
     labels = clear_spaces(labels)
 
+    if single_label:
+        return labels[0]
     return labels
