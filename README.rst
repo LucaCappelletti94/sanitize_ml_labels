@@ -18,8 +18,45 @@ Since some software handling coverages sometime get slightly different results, 
 
 |coveralls| |sonar_coverage| |code_climate_coverage|
 
-Simple python package to sanitize in a standard way ML-related labels.
+Usage examples
+----------------------------------------------
+So you have some kind of plot and you have some ML-related labels.
+Since I always rename and sanitize them the same way, I have prepared
+this package to always sanitize them in a standard fashion.
 
+.. code:: python
+
+    from sanitize_ml_labels import sanitize_ml_labels
+
+    # Example for metrics
+    labels = [
+        "acc",
+        "loss",
+        "auroc",
+        "lr"
+    ]
+
+    sanitize_ml_labels(labels)
+
+    # ["Accuracy", "Loss", "AUROC", "Learning rate"]
+
+    # Example for models
+    labels = [
+        "vanilla mlp",
+        "vanilla cnn",
+        "vanilla ffnn",
+        "vanilla perceptron"
+    ]
+
+    sanitize_ml_labels(labels)
+
+    # ["MLP", "CNN", "FFNN", "Perceptron"]
+
+
+New features and issues
+-----------------------
+As always, for new features and issues you can either open a new issue and pull request.
+A pull request will always be the quicker way, but I'll look into the issues when I get the time.
 
 .. |travis| image:: https://travis-ci.org/LucaCappelletti94/sanitize_ml_labels.png
    :target: https://travis-ci.org/LucaCappelletti94/sanitize_ml_labels

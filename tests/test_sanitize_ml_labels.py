@@ -1,5 +1,6 @@
 from sanitize_ml_labels import sanitize_ml_labels
 
+
 def test_sanitize_ml_labels():
     tests = {
         ("Accuracy", "AUROC", "Vanilla MLP", "Loss"): [
@@ -14,16 +15,16 @@ def test_sanitize_ml_labels():
     for goals, starts in tests.items():
         for goal, result in zip(goals, sanitize_ml_labels(starts)):
             assert goal == result
-    
+
     custom_defaults = {
-        "P":"promoters",
-        "E":"enhancers",
-        "A":"active ",
-        "I":"inactive "
+        "P": "promoters",
+        "E": "enhancers",
+        "A": "active ",
+        "I": "inactive "
     }
 
     tests = {
-        ("AE VS AP", "AE VS IP"):[
+        ("AE VS AP", "AE VS IP"): [
             "active enhancers vs active promoters",
             "active enhancers vs inactive promoters"
         ]
