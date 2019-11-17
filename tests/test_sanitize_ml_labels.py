@@ -32,3 +32,13 @@ def test_sanitize_ml_labels():
     for goals, starts in tests.items():
         for goal, result in zip(goals, sanitize_ml_labels(starts, custom_defaults=custom_defaults)):
             assert goal == result
+
+    tests = {
+        ("Acc", "Auroc", "Vanilla MLP", "Loss"): [
+            "acc", "auroc", "vanilla_mlp", "loss"
+        ]
+    }
+
+    for goals, starts in tests.items():
+        for goal, result in zip(goals, sanitize_ml_labels(starts, replace_defaults=False)):
+            assert goal == result
