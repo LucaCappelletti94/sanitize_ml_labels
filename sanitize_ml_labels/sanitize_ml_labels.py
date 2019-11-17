@@ -129,6 +129,13 @@ def apply_soft_capitalization(labels: List[str]) -> List[str]:
         for label in labels
     ]
 
+def to_string(labels: List[str]) -> List[str]:
+    """Convert all labels to strings."""
+    return [
+        str(label)
+        for label in labels
+    ]
+
 
 def sanitize_ml_labels(
     labels: List[str],
@@ -161,6 +168,8 @@ def sanitize_ml_labels(
     -------
     Sanitized labels.
     """
+
+    labels = to_string(labels)
 
     if replace_defaults:
         if custom_defaults is None:
