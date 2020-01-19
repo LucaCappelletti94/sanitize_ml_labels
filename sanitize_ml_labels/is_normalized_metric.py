@@ -6,7 +6,7 @@ from .sanitize_ml_labels import sanitize_ml_labels
 
 def load_normalized_metrics() -> Dict[str, str]:
     """Return dictionary containing default labels."""
-    path = "{root}/labels.json".format(
+    path = "{root}/normalized_metrics.json".format(
         root=os.path.dirname(os.path.realpath(__file__))
     )
     with open(path, "r") as f:
