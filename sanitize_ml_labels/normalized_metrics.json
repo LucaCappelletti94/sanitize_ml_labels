@@ -1,5 +1,7 @@
 [
     "Accuracy",
     "AUROC",
-    "AUPRC"
+    "AUPRC",
+    "Precision",
+    "Recall"
 ]
