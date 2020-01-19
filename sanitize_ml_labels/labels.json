@@ -13,7 +13,8 @@
         "accuracy_score"
     ],
     "Precision": [
-        "precision"
+        "precision",
+        "precision_score"
     ],
     "Recall": [
         "recall",
