@@ -16,6 +16,8 @@ def test_sanitize_ml_labels():
         for goal, result in zip(goals, sanitize_ml_labels(starts)):
             assert goal == result
 
+    assert "12" == sanitize_ml_labels(12)
+
     custom_defaults = {
         "P": "promoters",
         "E": "enhancers",
