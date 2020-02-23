@@ -3,8 +3,8 @@ from sanitize_ml_labels import sanitize_ml_labels
 
 def test_sanitize_ml_labels():
     tests = {
-        ("Accuracy", "Accuracy", "AUROC", "Vanilla MLP", "Loss", "Train AUROC"): [
-            "acc", "accuracy", "auroc", "vanilla_mlp", "loss", "train_auroc"
+        ("Accuracy", "Accuracy", "AUROC", "Vanilla MLP", "Loss", "Train AUROC", "Categorical accuracy"): [
+            "acc", "accuracy", "auroc", "vanilla_mlp", "loss", "train_auroc", "categorical_accuracy"
         ],
         ("MLP", "CNN", "FFNN"): [
             "   vanilla mlp",

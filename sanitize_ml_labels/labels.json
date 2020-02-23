@@ -12,6 +12,9 @@
         "accuracy",
         "accuracy_score"
     ],
+    "Categorical accuracy": [
+        "categorical_accuracy"
+    ],
     "Precision": [
         "precision",
         "precision_score"

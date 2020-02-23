@@ -3,5 +3,6 @@
     "AUROC",
     "AUPRC",
     "Precision",
-    "Recall"
+    "Recall",
+    "Categorical accuracy"
 ]
