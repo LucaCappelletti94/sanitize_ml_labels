@@ -6,10 +6,11 @@ def test_sanitize_ml_labels():
         ("Accuracy", "Accuracy", "AUROC", "Vanilla MLP", "Loss", "Train AUROC", "Categorical accuracy"): [
             "acc", "accuracy", "auroc", "vanilla_mlp", "loss", "train_auroc", "categorical_accuracy"
         ],
-        ("MLP", "CNN", "FFNN"): [
+        ("MLP", "CNN", "FFNN", "CAE"): [
             "   vanilla mlp",
             "vanilla    cnn",
-            "vanilla ffnn   "
+            "vanilla ffnn   ",
+            "vanilla cae"
         ]
     }
     for goals, starts in tests.items():

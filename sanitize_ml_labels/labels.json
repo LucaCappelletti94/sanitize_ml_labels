@@ -29,7 +29,41 @@
     "ReLU": [
         "relu"
     ],
+    "PReLU": [
+        "prelu"
+    ],
     "SeLU": [
         "SeLU"
+    ],
+    "CAE": [
+        "cae"
+    ],
+    "DAE": [
+        "dae"
+    ],
+    "VAE": [
+        "vae"
+    ],
+    "SAE": [
+        "sae"
+    ],
+    "SDAE": [
+        "sdae"
+    ],
+    "MSDAE": [
+        "msdae"
+    ],
+    "GAN": [
+        "gan"
+    ],
+    "POC": [
+        "poc"
+    ],
+    "RANSAC":[
+        "ransac"
+    ],
+    "MSE": [
+        "MSE",
+        "mean_squared_error"
     ]
 }
