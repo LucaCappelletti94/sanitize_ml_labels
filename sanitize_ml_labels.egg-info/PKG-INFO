@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: sanitize-ml-labels
-Version: 1.0.8
+Version: 1.0.9
 Summary: Simple python package to sanitize in a standard way ML-related labels.
 Home-page: https://github.com/LucaCappelletti94/sanitize_ml_labels
 Author: Luca Cappelletti
