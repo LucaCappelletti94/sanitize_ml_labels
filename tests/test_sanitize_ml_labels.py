@@ -11,6 +11,9 @@ def test_sanitize_ml_labels():
             "vanilla    cnn",
             "vanilla ffnn   ",
             "vanilla cae"
+        ],
+        ("CAE 500", ):[
+            "cae_500"
         ]
     }
     for goals, starts in tests.items():
