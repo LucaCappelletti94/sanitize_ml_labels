@@ -99,8 +99,10 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
         replace_candidates = []
         for default, targets in defaults.items():
             for target in targets:
-                if target in label.lower():
-                    replace_candidates.append((target, default))
+                regex = re.compile(target)
+                matches = regex.findall(label.lower())
+                if bool(matches):
+                    replace_candidates.append((matches[0], default))
 
         # The following is required to avoid replacing substrings.
         
@@ -110,7 +112,11 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
             reverse=False
         )
 
-        replace_candidates = [(j, val) for i, (j, val) in enumerate(replace_candidates) if all(j not in k.lower() for _, k in replace_candidates[i + 1:])]
+        replace_candidates = [
+            (j, val)
+            for i, (j, val) in enumerate(replace_candidates)
+            if all(j not in k.lower() for _, k in replace_candidates[i + 1:])
+        ]
 
         replace_candidates = sorted(
             replace_candidates,

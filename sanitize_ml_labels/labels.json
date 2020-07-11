@@ -17,11 +17,13 @@
     ],
     "Precision": [
         "precision",
-        "precision_score"
+        "precision_score",
+        "precision_\\d+"
     ],
     "Recall": [
         "recall",
-        "recall_score"
+        "recall_score",
+        "recall_\\d+"
     ],
     "Learning rate": [
         "lr"

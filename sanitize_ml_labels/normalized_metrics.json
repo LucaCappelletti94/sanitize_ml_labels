@@ -4,5 +4,6 @@
     "AUPRC",
     "Precision",
     "Recall",
+    "F1Score",
     "Categorical accuracy"
 ]
