@@ -8,7 +8,7 @@
         "average_precision_score"
     ],
     "Accuracy": [
-        "acc",
+        "acc$",
         "accuracy",
         "accuracy_score"
     ],

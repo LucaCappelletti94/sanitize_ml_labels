@@ -99,8 +99,8 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
         replace_candidates = []
         for default, targets in defaults.items():
             for target in targets:
-                regex = re.compile(target)
-                matches = regex.findall(label.lower())
+                regex = re.compile(target, re.IGNORECASE)
+                matches = regex.findall(label)
                 if bool(matches):
                     replace_candidates.append((matches[0], default))
 
@@ -125,7 +125,8 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
         )
 
         for target, default in replace_candidates:
-            label = re.compile(re.escape(target), re.IGNORECASE).sub(default, label)
+            label = label.replace(target, default)
+            label = label.replace(target.lower(), default)
         new_labels.append(label)
     return new_labels
 

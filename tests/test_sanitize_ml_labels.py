@@ -3,8 +3,8 @@ from sanitize_ml_labels import sanitize_ml_labels
 
 def test_sanitize_ml_labels():
     tests = {
-        ("Accuracy", "Accuracy", "AUROC", "Vanilla MLP", "Loss", "Train AUROC", "Categorical accuracy", "Precision", "Recall"): [
-            "acc", "accuracy", "auroc", "vanilla_mlp", "loss", "train_auroc", "categorical_accuracy", "precision_67", "recall_5"
+        ("Accuracy", "Accuracy", "AUROC", "Vanilla MLP", "Loss", "Train AUROC", "Categorical accuracy", "Precision", "Precision", "Recall", "Recall"): [
+            "acc", "accuracy", "auroc", "vanilla_mlp", "loss", "train_auroc", "categorical_accuracy", "precision_67", "Precision_67", "recall_5", "Recall_5"
         ],
         ("MLP", "CNN", "FFNN", "CAE"): [
             "   vanilla mlp",
@@ -16,11 +16,12 @@ def test_sanitize_ml_labels():
             "cae_500"
         ]
     }
+    errors = []
     for goals, starts in tests.items():
         for goal, result in zip(goals, sanitize_ml_labels(starts)):
-            assert goal == result
+            if goal != result:
+                errors.append((goal, result))
 
-    assert "12" == sanitize_ml_labels(12)
 
     custom_defaults = {
         "P": "promoters",
@@ -38,7 +39,8 @@ def test_sanitize_ml_labels():
 
     for goals, starts in tests.items():
         for goal, result in zip(goals, sanitize_ml_labels(starts, custom_defaults=custom_defaults)):
-            assert goal == result
+            if goal != result:
+                errors.append((goal, result))
 
     tests = {
         ("Acc", "Auroc", "Vanilla MLP", "Loss"): [
@@ -48,4 +50,9 @@ def test_sanitize_ml_labels():
 
     for goals, starts in tests.items():
         for goal, result in zip(goals, sanitize_ml_labels(starts, replace_defaults=False)):
-            assert goal == result
+            if goal != result:
+                errors.append((goal, result))
+
+    assert not errors
+
+    assert "12" == sanitize_ml_labels(12)
