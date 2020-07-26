@@ -67,5 +67,8 @@
     "MSE": [
         "MSE",
         "mean_squared_error"
+    ],
+    "Matthews correlation coefficient": [
+        "MCC"
     ]
 }
