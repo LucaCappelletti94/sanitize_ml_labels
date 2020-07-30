@@ -1,7 +1,7 @@
 from typing import List, Dict, Union
 import re
 import os
-import json
+import compress_json
 
 
 def consonants_to_upper(label: str) -> str:
@@ -53,45 +53,38 @@ def targets_to_spaces(label: str, targets: List[str]) -> str:
     return label
 
 
-def all_vanillas(labels: List[str]) -> bool:
-    """Return boolean representing if all labels contain the word 'vanilla'
+def have_descriptor(labels: List[str], descriptor: str) -> bool:
+    """Return boolean representing if all labels contain the given descriptor.
 
     Parameters
     ----------
     labels: List[str],
         labels to parse.
+    descriptor: str,
+        The descriptor that all texts need to contain.
 
     Returns
     -------
-    Boolean representing whetever labels are all vanilla.
+    Boolean representing whetever labels are all with descriptor.
     """
     return all(
-        "vanilla" in label
+        descriptor in label
         for label in labels
     )
 
 
-def remove_vanilla(labels: List[str]) -> List[str]:
-    """Return list of labels without the term 'vanilla'"""
+def remove_descriptor(labels: List[str], descriptor: str) -> List[str]:
+    """Return list of labels without the term descriptor"""
     return [
-        label.replace("vanilla", "")
+        label.replace(descriptor, "")
         for label in labels
     ]
-
-
-def load_defaults() -> Dict[str, str]:
-    """Return dictionary containing default labels."""
-    path = "{root}/labels.json".format(
-        root=os.path.dirname(os.path.realpath(__file__))
-    )
-    with open(path, "r") as f:
-        return json.load(f)
 
 
 def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[str]]) -> List[str]:
     """Return list of labels with replaced defaults."""
     defaults = {
-        **load_defaults(),
+        **compress_json.local_load("labels.json"),
         **custom_defaults
     }
     new_labels = []
@@ -105,7 +98,7 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
                     replace_candidates.append((matches[0], default))
 
         # The following is required to avoid replacing substrings.
-        
+
         replace_candidates = sorted(
             replace_candidates,
             key=lambda x: len(x[0]),
@@ -159,8 +152,8 @@ def to_string(labels: List[str]) -> List[str]:
 def sanitize_ml_labels(
     labels: Union[List[str], str],
     upper_case_consonants_clusters: bool = True,
-    replace_with_spaces: List[str] = ("-", "_"),
-    detect_and_remove_vanilla: bool = True,
+    replace_with_spaces: List[str] = ("-", "_", ":"),
+    detect_and_remove_homogeneous_descriptors: bool = True,
     replace_defaults: bool = True,
     soft_capitalization: bool = True,
     custom_defaults: Dict[str, Union[List[str], str]] = None
@@ -173,10 +166,10 @@ def sanitize_ml_labels(
         Wither label or list of labels to sanitize.
     upper_case_consonants_clusters: bool = True,
         Whetever to convert to upper case detected initials.
-    replace_with_spaces: List[str] = ("-", "_"),
+    replace_with_spaces: List[str] = ("-", "_", ":"),
         Characters to be replaced with spaces.
-    detect_and_remove_vanilla: bool = True,
-        Whetever to remove the term 'vanilla' when all terms contain it.
+    detect_and_remove_homogeneous_descriptors: bool = True,
+        Whetever to remove the known descriptors when all terms contain it.
     replace_defaults: bool = True,
         Whetever to replace default terms.
     soft_capitalization: bool = True
@@ -200,8 +193,10 @@ def sanitize_ml_labels(
 
     labels = to_string(labels)
 
-    if detect_and_remove_vanilla and all_vanillas(labels):
-        labels = remove_vanilla(labels)
+    if detect_and_remove_homogeneous_descriptors:
+        for descriptor in compress_json.local_load("descriptors.json"):
+            if have_descriptor(labels, descriptor):
+                labels = remove_descriptor(labels, descriptor)
 
     if soft_capitalization:
         labels = apply_soft_capitalization(labels)
