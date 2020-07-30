@@ -1,3 +1,4 @@
+compress_json
 
 [test]
 pytest

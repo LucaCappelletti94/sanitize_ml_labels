@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: sanitize-ml-labels
-Version: 1.0.11
+Version: 1.0.12
 Summary: Simple python package to sanitize in a standard way ML-related labels.
 Home-page: https://github.com/LucaCappelletti94/sanitize_ml_labels
 Author: Luca Cappelletti
@@ -8,7 +8,7 @@ Author-email: cappelletti.luca94@gmail.com
 License: MIT
 Description: sanitize_ml_labels
         =========================================================================================
-        |travis| |sonar_quality| |sonar_maintainability| |codacy| |code_climate_maintainability| |pip| |downloads|
+        |travis| |sonar_quality| |sonar_maintainability| |pip| |downloads|
         
         Simple python package to sanitize in a standard way ML-related labels.
         
@@ -22,9 +22,9 @@ Description: sanitize_ml_labels
         
         Tests Coverage
         ----------------------------------------------
-        Since some software handling coverages sometime get slightly different results, here's three of them:
+        Since some software handling coverages sometime get slightly different results, here's two of them:
         
-        |coveralls| |sonar_coverage| |code_climate_coverage|
+        |coveralls| |sonar_coverage|
         
         Why do I need this?
         -------------------
@@ -67,11 +67,11 @@ Description: sanitize_ml_labels
         
         Extra utilities
         ---------------
-        Since I always use metric sanitization alongside axis normalization, it is usefull to know which axis
+        Since I always use metric sanitization alongside axis normalization, it is useful to know which axis
         should be maxed between zero and one to avoid any visualization bias to the metrics.
         
         For this reason I have created the method :code:`is_normalized_metric`, which after having normalized the given metric
-        validates it against known normalized metrics (metrics between 0 and 1, is there another name? I coldn't figure out a better one).
+        validates it against known normalized metrics (metrics between 0 and 1, is there another name? I could not figure out a better one).
         
         .. code:: python
         
@@ -116,18 +116,6 @@ Description: sanitize_ml_labels
         .. |downloads| image:: https://pepy.tech/badge/sanitize-ml-labels
             :target: https://pepy.tech/badge/sanitize-ml-labels
             :alt: Pypi total project downloads 
-        
-        .. |codacy|  image:: https://api.codacy.com/project/badge/Grade/a60602ff54ac443fbc4aa3d016dbda48
-            :target: https://www.codacy.com/manual/LucaCappelletti94/sanitize_ml_labels?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LucaCappelletti94/sanitize_ml_labels&amp;utm_campaign=Badge_Grade
-            :alt: Codacy Maintainability
-        
-        .. |code_climate_maintainability| image:: https://api.codeclimate.com/v1/badges/042f787897c13cb78ddf/maintainability
-            :target: https://codeclimate.com/github/LucaCappelletti94/sanitize_ml_labels/maintainability
-            :alt: Maintainability
-        
-        .. |code_climate_coverage| image:: https://api.codeclimate.com/v1/badges/042f787897c13cb78ddf/test_coverage
-            :target: https://codeclimate.com/github/LucaCappelletti94/sanitize_ml_labels/test_coverage
-            :alt: Code Climate Coverate
 Platform: UNKNOWN
 Classifier: Development Status :: 3 - Alpha
 Classifier: License :: OSI Approved :: MIT License
