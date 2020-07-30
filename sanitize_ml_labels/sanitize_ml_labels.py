@@ -124,15 +124,39 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
 
 
 def clear_spaces(labels: List[str]) -> List[str]:
-    """Remove multiple sequences of spaces and strip spaces from labels."""
+    """Remove multiple sequences of spaces and strip spaces from labels.
+
+    Parameters
+    ---------------------------------
+    labels: List[str],
+        The labels from where to remove the duplicated spaces.
+
+    Returns
+    ---------------------------------
+    List of labels without duplicated spaces.
+    """
     return [
-        " ".join(label.split()).strip()
+        " ".join([
+            term
+            for term in label.split()
+            if term
+        ])
         for label in labels
     ]
 
 
 def apply_soft_capitalization(labels: List[str]) -> List[str]:
-    """Return labels capitalized only when no other capitalization is present."""
+    """Return labels capitalized only when no other capitalization is present.
+
+    Parameters
+    ------------------------
+    labels: List[str],
+        The labels where to apply soft capitalization.
+
+    Returns
+    ------------------------
+    List of labels with soft capitalization applied.
+    """
     return [
         label.capitalize() if label.lower() == label
         else label
@@ -140,8 +164,18 @@ def apply_soft_capitalization(labels: List[str]) -> List[str]:
     ]
 
 
-def to_string(labels: List[str]) -> List[str]:
-    """Convert all labels to strings."""
+def to_string(labels: List) -> List[str]:
+    """Convert all labels to strings.
+
+    Parameters
+    -----------------------
+    labels: List,
+        The labels to be converted  to strings if they are not already.
+
+    Returns
+    -----------------------
+    List with labels converted to strings.
+    """
     return [
         str(label)
         for label in labels

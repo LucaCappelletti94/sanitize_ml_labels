@@ -1,6 +1,6 @@
 sanitize_ml_labels
 =========================================================================================
-|travis| |sonar_quality| |sonar_maintainability| |codacy| |code_climate_maintainability| |pip| |downloads|
+|travis| |sonar_quality| |sonar_maintainability| |pip| |downloads|
 
 Simple python package to sanitize in a standard way ML-related labels.
 
@@ -14,9 +14,9 @@ As usual, just download it using pip:
 
 Tests Coverage
 ----------------------------------------------
-Since some software handling coverages sometime get slightly different results, here's three of them:
+Since some software handling coverages sometime get slightly different results, here's two of them:
 
-|coveralls| |sonar_coverage| |code_climate_coverage|
+|coveralls| |sonar_coverage|
 
 Why do I need this?
 -------------------
@@ -108,15 +108,3 @@ A pull request will always be the quicker way, but I'll look into the issues whe
 .. |downloads| image:: https://pepy.tech/badge/sanitize-ml-labels
     :target: https://pepy.tech/badge/sanitize-ml-labels
     :alt: Pypi total project downloads 
-
-.. |codacy|  image:: https://api.codacy.com/project/badge/Grade/a60602ff54ac443fbc4aa3d016dbda48
-    :target: https://www.codacy.com/manual/LucaCappelletti94/sanitize_ml_labels?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LucaCappelletti94/sanitize_ml_labels&amp;utm_campaign=Badge_Grade
-    :alt: Codacy Maintainability
-
-.. |code_climate_maintainability| image:: https://api.codeclimate.com/v1/badges/042f787897c13cb78ddf/maintainability
-    :target: https://codeclimate.com/github/LucaCappelletti94/sanitize_ml_labels/maintainability
-    :alt: Maintainability
-
-.. |code_climate_coverage| image:: https://api.codeclimate.com/v1/badges/042f787897c13cb78ddf/test_coverage
-    :target: https://codeclimate.com/github/LucaCappelletti94/sanitize_ml_labels/test_coverage
-    :alt: Code Climate Coverate
