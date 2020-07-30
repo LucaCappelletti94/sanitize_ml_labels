@@ -59,11 +59,11 @@ Here you have a couple of common examples: you have a set of metrics to normaliz
 
 Extra utilities
 ---------------
-Since I always use metric sanitization alongside axis normalization, it is usefull to know which axis
+Since I always use metric sanitization alongside axis normalization, it is useful to know which axis
 should be maxed between zero and one to avoid any visualization bias to the metrics.
 
 For this reason I have created the method :code:`is_normalized_metric`, which after having normalized the given metric
-validates it against known normalized metrics (metrics between 0 and 1, is there another name? I coldn't figure out a better one).
+validates it against known normalized metrics (metrics between 0 and 1, is there another name? I could not figure out a better one).
 
 .. code:: python
 
