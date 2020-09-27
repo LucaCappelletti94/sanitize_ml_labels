@@ -70,5 +70,9 @@
     ],
     "Matthews correlation coefficient": [
         "MCC"
+    ],
+    "RAM":[
+        "RAM",
+        "Ram"
     ]
 }
