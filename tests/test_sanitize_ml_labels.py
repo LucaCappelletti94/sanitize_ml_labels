@@ -12,7 +12,8 @@ def test_sanitize_ml_labels():
             "vanilla ffnn   ",
             "vanilla cae"
         ],
-        ("CAE 500", ):[
+        ("RAM", "RAM"): ["ram", "Ram"],
+        ("CAE 500", ): [
             "cae_500"
         ]
     }
@@ -21,7 +22,6 @@ def test_sanitize_ml_labels():
         for goal, result in zip(goals, sanitize_ml_labels(starts)):
             if goal != result:
                 errors.append((goal, result))
-
 
     custom_defaults = {
         "P": "promoters",
