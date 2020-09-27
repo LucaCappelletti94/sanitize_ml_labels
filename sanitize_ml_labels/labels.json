@@ -72,7 +72,24 @@
         "MCC"
     ],
     "RAM":[
-        "RAM",
-        "Ram"
+        "RAM"
+    ],
+    "GPU":[
+        "GPU"
+    ],
+    "CPU":[
+        "CPU"
+    ],
+    "TPU":[
+        "TPU"
+    ],
+    "FPU":[
+        "FPU"
+    ],
+    "ALU":[
+        "ALU"
+    ],
+    "PSU":[
+        "PSU"
     ]
 }
