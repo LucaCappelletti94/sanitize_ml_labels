@@ -15,6 +15,22 @@
     "Categorical accuracy": [
         "categorical_accuracy"
     ],
+    "True positives": [
+        "TP",
+        "TPs"
+    ],
+    "False positives": [
+        "FP",
+        "FPs"
+    ],
+    "True negatives": [
+        "TN",
+        "TNs"
+    ],
+    "False negatives": [
+        "FN",
+        "FNs"
+    ],
     "Precision": [
         "precision",
         "precision_score",
