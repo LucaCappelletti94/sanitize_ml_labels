@@ -47,6 +47,36 @@
     "ReLU": [
         "relu"
     ],
+    "Balanced accuracy": [
+        "BA"
+    ],
+    "Negative predictive value": [
+        "NPV"
+    ],
+    "False discovery rate": [
+        "FDR"
+    ],
+    "False omission rate": [
+        "FOR"
+    ],
+    "Prevalence threshold": [
+        "PT"
+    ],
+    "Threat score": [
+        "TS"
+    ],
+    "Fowlkes-Mallows index": [
+        "FMI"
+    ],
+    "Positive likelihood ratio": [
+        "LR+"
+    ],
+    "Negative likelihood ratio": [
+        "LR-"
+    ],
+    "Diagnostic odds ratio": [
+        "DOR"
+    ],
     "PReLU": [
         "prelu"
     ],
@@ -80,7 +110,7 @@
     "POC": [
         "poc"
     ],
-    "RANSAC":[
+    "RANSAC": [
         "ransac"
     ],
     "MSE": [
@@ -90,25 +120,25 @@
     "Matthews correlation coefficient": [
         "MCC"
     ],
-    "RAM":[
+    "RAM": [
         "RAM"
     ],
-    "GPU":[
+    "GPU": [
         "GPU"
     ],
-    "CPU":[
+    "CPU": [
         "CPU"
     ],
-    "TPU":[
+    "TPU": [
         "TPU"
     ],
-    "FPU":[
+    "FPU": [
         "FPU"
     ],
-    "ALU":[
+    "ALU": [
         "ALU"
     ],
-    "PSU":[
+    "PSU": [
         "PSU"
     ]
 }
