@@ -83,7 +83,13 @@ def remove_descriptor(labels: List[str], descriptor: str) -> List[str]:
 def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[str]]) -> List[str]:
     """Return list of labels with replaced defaults."""
     defaults = {
-        **compress_json.local_load("labels.json"),
+        **{
+            key: [
+                "(?<![a-z]){}(?![a-z])".format(val)
+                for val in values
+            ]
+            for key, values in compress_json.local_load("labels.json").items()
+        },
         **custom_defaults
     }
     new_labels = []

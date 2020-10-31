@@ -8,9 +8,13 @@
         "average_precision_score"
     ],
     "Accuracy": [
-        "acc$",
+        "acc",
         "accuracy",
         "accuracy_score"
+    ],
+    "Specificity": [
+        "specificity",
+        "specificity_score"
     ],
     "Categorical accuracy": [
         "categorical_accuracy"
