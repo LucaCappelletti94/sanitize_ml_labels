@@ -27,14 +27,16 @@ def test_sanitize_ml_labels():
         "P": "promoters",
         "E": "enhancers",
         "A": "active ",
-        "I": "inactive "
+        "I": "inactive ",
+        "$e=1$": "1",
     }
 
     tests = {
         ("AE VS AP", "AE VS IP"): [
             "active enhancers vs active promoters",
             "active enhancers vs inactive promoters"
-        ]
+        ],
+        ("$e=1$", ): ["1"]
     }
 
     for goals, starts in tests.items():
