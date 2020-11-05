@@ -3,8 +3,12 @@
     "AUROC",
     "AUPRC",
     "Precision",
+    "Specificity",
     "Recall",
     "F1Score",
     "Categorical accuracy",
-    "Matthews correlation coefficient"
+    "Matthews correlation coefficient",
+    "False discovery rate",
+    "False omission rate",
+    "Balanced accuracy"
 ]
