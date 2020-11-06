@@ -45,6 +45,10 @@
         "recall_score",
         "recall_\\d+"
     ],
+    "F1 Score": [
+        "F1Score",
+        "f1_score"
+    ],
     "Learning rate": [
         "lr"
     ],

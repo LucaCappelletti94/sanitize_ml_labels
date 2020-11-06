@@ -5,7 +5,7 @@
     "Precision",
     "Specificity",
     "Recall",
-    "F1Score",
+    "F1 Score",
     "Categorical accuracy",
     "Matthews correlation coefficient",
     "False discovery rate",
