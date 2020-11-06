@@ -18,7 +18,9 @@ def test_is_normalized_metric():
             "precision",
             "recall_1",
             "recall_6",
-            "F1Score"
+            "F1Score",
+            "F1 Score",
+            "F1 score"
         ],
         False: [
             "MLP", "Relu"

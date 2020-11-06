@@ -47,7 +47,8 @@
     ],
     "F1 Score": [
         "F1Score",
-        "f1_score"
+        "f1_score",
+        "f1 score"
     ],
     "Learning rate": [
         "lr"
