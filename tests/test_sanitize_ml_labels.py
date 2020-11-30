@@ -15,6 +15,9 @@ def test_sanitize_ml_labels():
         ("RAM", "RAM"): ["ram", "Ram"],
         ("CAE 500", ): [
             "cae_500"
+        ],
+        ("Positive likelihood ratio", "Negative likelihood ratio"): [
+            "LR+", "LR-"
         ]
     }
     errors = []

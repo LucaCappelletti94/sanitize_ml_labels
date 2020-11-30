@@ -78,10 +78,10 @@
         "FMI"
     ],
     "Positive likelihood ratio": [
-        "LR+"
+        "LR\\+"
     ],
     "Negative likelihood ratio": [
-        "LR-"
+        "LR\\-"
     ],
     "Diagnostic odds ratio": [
         "DOR"
