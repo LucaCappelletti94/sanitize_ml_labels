@@ -5,6 +5,8 @@
     "Precision",
     "Specificity",
     "Recall",
+    "Miss rate",
+    "Fall out",
     "F1 Score",
     "F1 Score Micro",
     "F1 Score Macro",
