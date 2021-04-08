@@ -52,7 +52,7 @@ def targets_to_spaces(label: str, targets: List[str]) -> str:
     return label
 
 
-def have_descriptor(labels: List[str], descriptor: str) -> bool:
+def have_descriptor(labels: List[str], descriptor: str, generic_words_cooccurring_with_descriptors: List[str]) -> bool:
     """Return boolean representing if all labels contain the given descriptor.
 
     Parameters
@@ -61,6 +61,16 @@ def have_descriptor(labels: List[str], descriptor: str) -> bool:
         labels to parse.
     descriptor: str,
         The descriptor that all texts need to contain.
+        A descriptor is a term like 'vanilla' or 'biolink', that is often
+        added to all the terms in a set. When all terms in a set have the
+        same descriptor, there is no need for the descriptor to be shown
+        in the first place and only contributes to cluttering in the
+        visualization at hand.
+    generic_words_cooccurring_with_descriptors: List[str],
+        List of words that is known to appear with descriptors.
+        Some words, like 'Other' or 'Unknown' often are added to descriptors
+        sets, without the main descriptor. In these cases we still want to drop
+        the descriptor if all the other terms have it.
 
     Returns
     -------
@@ -69,6 +79,7 @@ def have_descriptor(labels: List[str], descriptor: str) -> bool:
     return all(
         descriptor in label
         for label in labels
+        if label.lower() not in generic_words_cooccurring_with_descriptors
     )
 
 
@@ -233,9 +244,15 @@ def sanitize_ml_labels(
     labels = to_string(labels)
 
     if detect_and_remove_homogeneous_descriptors:
+        generic_words_cooccurring_with_descriptors = compress_json.local_load(
+            "generic_words_cooccurring_with_descriptors.json"
+        )
         for descriptor in compress_json.local_load("descriptors.json"):
-            if have_descriptor(labels, descriptor):
-                labels = remove_descriptor(labels, descriptor)
+            if have_descriptor(labels, descriptor, generic_words_cooccurring_with_descriptors):
+                labels = remove_descriptor(
+                    labels,
+                    descriptor
+                )
 
     if soft_capitalization:
         labels = apply_soft_capitalization(labels)

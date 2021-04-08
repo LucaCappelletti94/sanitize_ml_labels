@@ -12,6 +12,20 @@ def test_sanitize_ml_labels():
             "vanilla ffnn   ",
             "vanilla cae"
         ],
+        ("MLP", "CNN", "FFNN", "CAE", "Other"): [
+            "   vanilla mlp",
+            "vanilla    cnn",
+            "vanilla ffnn   ",
+            "vanilla cae",
+            "other"
+        ],
+        ("MLP", "CNN", "FFNN", "CAE", "Others"): [
+            "   vanilla mlp",
+            "vanilla    cnn",
+            "vanilla ffnn   ",
+            "vanilla cae",
+            "Others"
+        ],
         ("RAM", "RAM"): ["ram", "Ram"],
         ("CAE 500", ): [
             "cae_500"
