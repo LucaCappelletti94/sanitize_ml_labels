@@ -273,13 +273,16 @@ def sanitize_ml_labels(
         for label in labels
     ]
 
+    labels = clear_spaces(labels)
+
+    if soft_capitalization:
+        labels = apply_soft_capitalization(labels)
+
     if upper_case_consonants_clusters:
         labels = [
             consonants_to_upper(label)
             for label in labels
         ]
-
-    labels = clear_spaces(labels)
 
     if single_label:
         return labels[0]

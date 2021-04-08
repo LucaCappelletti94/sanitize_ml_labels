@@ -12,6 +12,17 @@ def test_sanitize_ml_labels():
             "vanilla ffnn   ",
             "vanilla cae"
         ],
+        (
+            "Has gene product",
+            "Interacts with",
+            "subPropertyOf",
+            "Other"
+        ): [
+            'biolink:has_gene_product',
+            'biolink:interacts_with',
+            'biolink:subPropertyOf',
+            'other'
+        ],
         ("MLP", "CNN", "FFNN", "CAE", "Other"): [
             "   vanilla mlp",
             "vanilla    cnn",
