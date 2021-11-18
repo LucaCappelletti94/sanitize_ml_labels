@@ -212,15 +212,15 @@ def sanitize_ml_labels(
 
     Parameters
     ----------
-    labels: Union[List[str], str],
+    labels: Union[List[str], str]
         Wither label or list of labels to sanitize.
-    upper_case_consonants_clusters: bool = True,
+    upper_case_consonants_clusters: bool = True
         Whetever to convert to upper case detected initials.
-    replace_with_spaces: List[str] = ("-", "_", ":"),
+    replace_with_spaces: List[str] = ("-", "_", ":", "<", ">")
         Characters to be replaced with spaces.
-    detect_and_remove_homogeneous_descriptors: bool = True,
+    detect_and_remove_homogeneous_descriptors: bool = True
         Whetever to remove the known descriptors when all terms contain it.
-    replace_defaults: bool = True,
+    replace_defaults: bool = True
         Whetever to replace default terms.
     soft_capitalization: bool = True
         Whetever to apply soft capitalization,
