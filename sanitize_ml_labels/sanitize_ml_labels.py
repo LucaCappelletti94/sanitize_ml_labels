@@ -202,7 +202,7 @@ def to_string(labels: List) -> List[str]:
 def sanitize_ml_labels(
     labels: Union[List[str], str],
     upper_case_consonants_clusters: bool = True,
-    replace_with_spaces: List[str] = ("-", "_", ":"),
+    replace_with_spaces: List[str] = ("-", "_", ":", "<", ">"),
     detect_and_remove_homogeneous_descriptors: bool = True,
     replace_defaults: bool = True,
     soft_capitalization: bool = True,

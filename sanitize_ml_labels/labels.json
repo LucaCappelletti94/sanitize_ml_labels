@@ -50,9 +50,6 @@
         "f1_score",
         "f1 score"
     ],
-    "Learning rate": [
-        "lr"
-    ],
     "ReLU": [
         "relu"
     ],
@@ -149,5 +146,8 @@
     ],
     "PSU": [
         "PSU"
+    ],
+    "Learning rate": [
+        "lr"
     ]
 }
