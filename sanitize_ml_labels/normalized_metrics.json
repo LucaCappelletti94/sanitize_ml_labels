@@ -22,5 +22,5 @@
     "False positives over total",
     "True negatives over total",
     "False negatives over total",
-    "Fowlkes–Mallows index"
+    "Fowlkes Mallows index"
 ]
