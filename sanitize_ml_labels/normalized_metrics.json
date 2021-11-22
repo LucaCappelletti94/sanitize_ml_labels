@@ -15,5 +15,12 @@
     "Matthews correlation coefficient",
     "False discovery rate",
     "False omission rate",
-    "Balanced accuracy"
+    "Balanced accuracy",
+    "Informedness",
+    "Threat score",
+    "True positives over total",
+    "False positives over total",
+    "True negatives over total",
+    "False negatives over total",
+    "Fowlkes–Mallows index"
 ]

@@ -19,6 +19,18 @@
     "Categorical accuracy": [
         "categorical_accuracy"
     ],
+    "True positives over total": [
+        "TP/T"
+    ],
+    "False positives over total": [
+        "FP/T"
+    ],
+    "True negatives over total": [
+        "TN/T"
+    ],
+    "False negatives over total": [
+        "FN/T"
+    ],
     "True positives": [
         "TP",
         "TPs"
@@ -72,16 +84,27 @@
         "TS"
     ],
     "Fowlkes-Mallows index": [
+        "fowlkes_mallows_index",
         "FMI"
     ],
     "Positive likelihood ratio": [
-        "LR\\+"
+        "LR\\+",
+        "LR_pos",
+        "positive_likelyhood_ratio"
     ],
     "Negative likelihood ratio": [
-        "LR\\-"
+        "LR\\-",
+        "LR_neg",
+        "negative_likelyhood_ratio"
     ],
     "Diagnostic odds ratio": [
         "DOR"
+    ],
+    "GraPE": [
+        "grape"
+    ],
+    "SPINE": [
+        "spine"
     ],
     "PReLU": [
         "prelu"
