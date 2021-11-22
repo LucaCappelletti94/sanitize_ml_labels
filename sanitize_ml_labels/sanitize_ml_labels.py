@@ -13,7 +13,7 @@ def consonants_to_upper(label: str) -> str:
 
     Parameters
     ----------
-    label: str,
+    label: str
         label to parse.
 
     Returns
@@ -37,9 +37,9 @@ def targets_to_spaces(label: str, targets: List[str]) -> str:
 
     Parameters
     ----------
-    label: str,
+    label: str
         label to parse.
-    targets: List[str],
+    targets: List[str]
         list of targets to replace to spaces.
 
     Returns
@@ -167,7 +167,7 @@ def apply_soft_capitalization(labels: List[str]) -> List[str]:
 
     Parameters
     ------------------------
-    labels: List[str],
+    labels: List[str]
         The labels where to apply soft capitalization.
 
     Returns
@@ -186,7 +186,7 @@ def to_string(labels: List) -> List[str]:
 
     Parameters
     -----------------------
-    labels: List,
+    labels: List
         The labels to be converted  to strings if they are not already.
 
     Returns

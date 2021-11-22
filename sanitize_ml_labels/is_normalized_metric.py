@@ -9,7 +9,7 @@ def is_normalized_metric(metric: str) -> bool:
 
     Parameters
     ----------
-    metric:str,
+    metric:str
         The metric to check for
 
     Returns
