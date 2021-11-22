@@ -18,6 +18,8 @@
     "Balanced accuracy",
     "Informedness",
     "Threat score",
+    "Positive likelihood ratio",
+    "Negative likelihood ratio",
     "True positives over total",
     "False positives over total",
     "True negatives over total",
