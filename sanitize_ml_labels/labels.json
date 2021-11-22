@@ -20,16 +20,20 @@
         "categorical_accuracy"
     ],
     "True positives over total": [
-        "TP/T"
+        "TP/T",
+        "true_positives_over_total"
     ],
     "False positives over total": [
-        "FP/T"
+        "FP/T",
+        "true_positives_over_total"
     ],
     "True negatives over total": [
-        "TN/T"
+        "TN/T",
+        "true_negatives_over_total"
     ],
     "False negatives over total": [
-        "FN/T"
+        "FN/T",
+        "false_negatives_over_total"
     ],
     "True positives": [
         "TP",
