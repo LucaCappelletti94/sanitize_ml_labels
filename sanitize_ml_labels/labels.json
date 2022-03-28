@@ -171,6 +171,10 @@
     "ALU": [
         "ALU"
     ],
+    "COVID19": [
+        "Covid",
+        "Covid19"
+    ],
     "PSU": [
         "PSU"
     ],

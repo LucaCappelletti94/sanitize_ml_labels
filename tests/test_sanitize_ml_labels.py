@@ -43,6 +43,10 @@ def test_sanitize_ml_labels():
         ],
         ("Positive likelihood ratio", "Negative likelihood ratio"): [
             "LR+", "LR-"
+        ],
+        ("COVID19", "COVID19"): [
+            "covid",
+            "covid19"
         ]
     }
     errors = []
