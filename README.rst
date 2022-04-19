@@ -37,6 +37,7 @@ I have strived to mantain a 100% code coverage in this project:
 You can verify the test coverage of this repository by running in its root:
 
 .. code:: bash
+
     pytest --cov
 
 Why do I need this?

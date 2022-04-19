@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: sanitize-ml-labels
-Version: 1.0.31
+Version: 1.0.32
 Summary: Simple python package to sanitize in a standard way ML-related labels.
 Home-page: https://github.com/LucaCappelletti94/sanitize_ml_labels
 Author: Luca Cappelletti
@@ -8,7 +8,7 @@ Author-email: cappelletti.luca94@gmail.com
 License: MIT
 Description: sanitize_ml_labels
         =========================================================================================
-        |travis| |sonar_quality| |sonar_maintainability| |pip| |downloads|
+        |pip| |downloads|
         
         Simple python package to sanitize in a standard way ML-related labels.
         
@@ -22,9 +22,30 @@ Description: sanitize_ml_labels
         
         Tests Coverage
         ----------------------------------------------
-        Since some software handling coverages sometime get slightly different results, here's two of them:
+        I have strived to mantain a 100% code coverage in this project:
         
-        |coveralls| |sonar_coverage|
+        +------------------------+------------+---------+----------+----------+
+        | Module                 | statements | missing | excluded | coverage |
+        +========================+============+=========+==========+==========+
+        | Total                  | 84         | 0       | 0        | 100%     |
+        +------------------------+------------+---------+----------+----------+
+        | sanitize               | 3          | 0       | 0        | 100%     |
+        | _ml_labels/__init__.py |            |         |          |          |
+        +------------------------+------------+---------+----------+----------+
+        | sanitize_ml            | 1          | 0       | 0        | 100%     |
+        | _labels/__version__.py |            |         |          |          |
+        +------------------------+------------+---------+----------+----------+
+        | sanitize_ml_labels/is  | 10         | 0       | 0        | 100%     |
+        | _normalized_metric.py  |            |         |          |          |
+        +------------------------+------------+---------+----------+----------+
+        | sanitize_ml_labels     | 70         | 0       | 0        | 100%     |
+        | /sanitize_ml_labels.py |            |         |          |          |
+        +------------------------+------------+---------+----------+----------+
+        
+        You can verify the test coverage of this repository by running in its root:
+        
+        .. code:: bash
+            pytest --cov
         
         Why do I need this?
         -------------------
@@ -73,41 +94,27 @@ Description: sanitize_ml_labels
         For this reason I have created the method :code:`is_normalized_metric`, which after having normalized the given metric
         validates it against known normalized metrics (metrics between 0 and 1, is there another name? I could not figure out a better one).
         
+        Analogously, I have also created the method :code:`is_absolutely_normalized_metric` to validate a metric for the range
+        between -1 and 1.
+        
         .. code:: python
         
-            from sanitize_ml_labels import is_normalized_metric
+            from sanitize_ml_labels import is_normalized_metric, is_absolutely_normalized_metric
         
             is_normalized_metric("MSE") # False
             is_normalized_metric("acc") # True
             is_normalized_metric("accuracy") # True
             is_normalized_metric("AUROC") # True
             is_normalized_metric("auprc") # True
+            is_absolutely_normalized_metric("auprc") # False
+            is_absolutely_normalized_metric("MCC") # True
+            is_absolutely_normalized_metric("Markedness") # True
         
         
         New features and issues
         -----------------------
         As always, for new features and issues you can either open a new issue and pull request.
         A pull request will always be the quicker way, but I'll look into the issues when I get the time.
-        
-        .. |travis| image:: https://travis-ci.org/LucaCappelletti94/sanitize_ml_labels.png
-           :target: https://travis-ci.org/LucaCappelletti94/sanitize_ml_labels
-           :alt: Travis CI build
-        
-        .. |sonar_quality| image:: https://sonarcloud.io/api/project_badges/measure?project=LucaCappelletti94_sanitize_ml_labels&metric=alert_status
-            :target: https://sonarcloud.io/dashboard/index/LucaCappelletti94_sanitize_ml_labels
-            :alt: SonarCloud Quality
-        
-        .. |sonar_maintainability| image:: https://sonarcloud.io/api/project_badges/measure?project=LucaCappelletti94_sanitize_ml_labels&metric=sqale_rating
-            :target: https://sonarcloud.io/dashboard/index/LucaCappelletti94_sanitize_ml_labels
-            :alt: SonarCloud Maintainability
-        
-        .. |sonar_coverage| image:: https://sonarcloud.io/api/project_badges/measure?project=LucaCappelletti94_sanitize_ml_labels&metric=coverage
-            :target: https://sonarcloud.io/dashboard/index/LucaCappelletti94_sanitize_ml_labels
-            :alt: SonarCloud Coverage
-        
-        .. |coveralls| image:: https://coveralls.io/repos/github/LucaCappelletti94/sanitize_ml_labels/badge.svg?branch=master
-            :target: https://coveralls.io/github/LucaCappelletti94/sanitize_ml_labels?branch=master
-            :alt: Coveralls Coverage
         
         .. |pip| image:: https://badge.fury.io/py/sanitize-ml-labels.svg
             :target: https://badge.fury.io/py/sanitize-ml-labels

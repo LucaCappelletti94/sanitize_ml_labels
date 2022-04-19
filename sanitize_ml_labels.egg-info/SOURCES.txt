@@ -3,6 +3,7 @@ README.rst
 setup.py
 sanitize_ml_labels/__init__.py
 sanitize_ml_labels/__version__.py
+sanitize_ml_labels/absolutely_normalized_metrics.json
 sanitize_ml_labels/descriptors.json
 sanitize_ml_labels/generic_words_cooccurring_with_descriptors.json
 sanitize_ml_labels/is_normalized_metric.py
