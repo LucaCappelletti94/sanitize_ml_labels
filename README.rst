@@ -86,15 +86,21 @@ should be maxed between zero and one to avoid any visualization bias to the metr
 For this reason I have created the method :code:`is_normalized_metric`, which after having normalized the given metric
 validates it against known normalized metrics (metrics between 0 and 1, is there another name? I could not figure out a better one).
 
+Analogously, I have also created the method :code:`is_absolutely_normalized_metric` to validate a metric for the range
+between -1 and 1.
+
 .. code:: python
 
-    from sanitize_ml_labels import is_normalized_metric
+    from sanitize_ml_labels import is_normalized_metric, is_absolutely_normalized_metric
 
     is_normalized_metric("MSE") # False
     is_normalized_metric("acc") # True
     is_normalized_metric("accuracy") # True
     is_normalized_metric("AUROC") # True
     is_normalized_metric("auprc") # True
+    is_absolutely_normalized_metric("auprc") # False
+    is_absolutely_normalized_metric("MCC") # True
+    is_absolutely_normalized_metric("Markedness") # True
 
 
 New features and issues
