@@ -22,10 +22,10 @@ I have strived to mantain a 100% code coverage in this project:
 | Total                  | 84         | 0       | 0        | 100%     |
 +------------------------+------------+---------+----------+----------+
 | sanitize               | 3          | 0       | 0        | 100%     |
-| _ml_labels/**init**.py |            |         |          |          |
+| _ml_labels/__init__.py |            |         |          |          |
 +------------------------+------------+---------+----------+----------+
 | sanitize_ml            | 1          | 0       | 0        | 100%     |
-| _labels/**version**.py |            |         |          |          |
+| _labels/__version__.py |            |         |          |          |
 +------------------------+------------+---------+----------+----------+
 | sanitize_ml_labels/i   | 10         | 0       | 0        | 100%     |
 | s_normalized_metric.py |            |         |          |          |
