@@ -1,6 +1,6 @@
 sanitize_ml_labels
 =========================================================================================
-|travis| |sonar_quality| |sonar_maintainability| |pip| |downloads|
+|pip| |downloads|
 
 Simple python package to sanitize in a standard way ML-related labels.
 
@@ -14,9 +14,22 @@ As usual, just download it using pip:
 
 Tests Coverage
 ----------------------------------------------
-Since some software handling coverages sometime get slightly different results, here's two of them:
+I have strived to mantain a 100% code coverage in this project:
 
-|coveralls| |sonar_coverage|
+Name                                         Stmts   Miss  Cover
+----------------------------------------------------------------
+sanitize_ml_labels/__init__.py                   3      0   100%
+sanitize_ml_labels/__version__.py                1      0   100%
+sanitize_ml_labels/is_normalized_metric.py      10      0   100%
+sanitize_ml_labels/sanitize_ml_labels.py        70      0   100%
+----------------------------------------------------------------
+TOTAL                                           84      0   100%
+
+You can verify the test coverage of this repository by running in its root:
+
+```bash
+pytest --cov
+```
 
 Why do I need this?
 -------------------
