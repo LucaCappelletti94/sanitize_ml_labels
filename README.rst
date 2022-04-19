@@ -27,8 +27,8 @@ I have strived to mantain a 100% code coverage in this project:
 | sanitize_ml            | 1          | 0       | 0        | 100%     |
 | _labels/__version__.py |            |         |          |          |
 +------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels/i   | 10         | 0       | 0        | 100%     |
-| s_normalized_metric.py |            |         |          |          |
+| sanitize_ml_labels/is_ | 10         | 0       | 0        | 100%     |
+| normalized_metric.py   |            |         |          |          |
 +------------------------+------------+---------+----------+----------+
 | sanitize_ml_labels     | 70         | 0       | 0        | 100%     |
 | /sanitize_ml_labels.py |            |         |          |          |
