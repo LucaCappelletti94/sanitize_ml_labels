@@ -45,6 +45,7 @@ Description: sanitize_ml_labels
         You can verify the test coverage of this repository by running in its root:
         
         .. code:: bash
+        
             pytest --cov
         
         Why do I need this?
