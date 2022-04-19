@@ -108,26 +108,6 @@ New features and issues
 As always, for new features and issues you can either open a new issue and pull request.
 A pull request will always be the quicker way, but I'll look into the issues when I get the time.
 
-.. |travis| image:: https://travis-ci.org/LucaCappelletti94/sanitize_ml_labels.png
-   :target: https://travis-ci.org/LucaCappelletti94/sanitize_ml_labels
-   :alt: Travis CI build
-
-.. |sonar_quality| image:: https://sonarcloud.io/api/project_badges/measure?project=LucaCappelletti94_sanitize_ml_labels&metric=alert_status
-    :target: https://sonarcloud.io/dashboard/index/LucaCappelletti94_sanitize_ml_labels
-    :alt: SonarCloud Quality
-
-.. |sonar_maintainability| image:: https://sonarcloud.io/api/project_badges/measure?project=LucaCappelletti94_sanitize_ml_labels&metric=sqale_rating
-    :target: https://sonarcloud.io/dashboard/index/LucaCappelletti94_sanitize_ml_labels
-    :alt: SonarCloud Maintainability
-
-.. |sonar_coverage| image:: https://sonarcloud.io/api/project_badges/measure?project=LucaCappelletti94_sanitize_ml_labels&metric=coverage
-    :target: https://sonarcloud.io/dashboard/index/LucaCappelletti94_sanitize_ml_labels
-    :alt: SonarCloud Coverage
-
-.. |coveralls| image:: https://coveralls.io/repos/github/LucaCappelletti94/sanitize_ml_labels/badge.svg?branch=master
-    :target: https://coveralls.io/github/LucaCappelletti94/sanitize_ml_labels?branch=master
-    :alt: Coveralls Coverage
-
 .. |pip| image:: https://badge.fury.io/py/sanitize-ml-labels.svg
     :target: https://badge.fury.io/py/sanitize-ml-labels
     :alt: Pypi project
