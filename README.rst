@@ -16,14 +16,14 @@ Tests Coverage
 ----------------------------------------------
 I have strived to mantain a 100% code coverage in this project:
 
-Name                                         Stmts   Miss  Cover
-----------------------------------------------------------------
-sanitize_ml_labels/__init__.py                   3      0   100%
-sanitize_ml_labels/__version__.py                1      0   100%
-sanitize_ml_labels/is_normalized_metric.py      10      0   100%
-sanitize_ml_labels/sanitize_ml_labels.py        70      0   100%
-----------------------------------------------------------------
-TOTAL                                           84      0   100%
+| Module                                     | statements | missing | excluded | coverage |
+|--------------------------------------------|------------|---------|----------|----------|
+| Total                                      | 84         | 0       | 0        | 100%     |
+| Total                                      | 84         | 0       | 0        | 100%     |
+| sanitize_ml_labels/__init__.py             | 3          | 0       | 0        | 100%     |
+| sanitize_ml_labels/__version__.py          | 1          | 0       | 0        | 100%     |
+| sanitize_ml_labels/is_normalized_metric.py | 10         | 0       | 0        | 100%     |
+| sanitize_ml_labels/sanitize_ml_labels.py   | 70         | 0       | 0        | 100%     |
 
 You can verify the test coverage of this repository by running in its root:
 
