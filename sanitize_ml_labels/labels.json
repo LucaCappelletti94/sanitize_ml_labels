@@ -151,7 +151,9 @@
         "mean_squared_error"
     ],
     "Matthews correlation coefficient": [
-        "MCC"
+        "MCC",
+        "phi coefficient",
+        "mean square contingency coefficient"
     ],
     "RAM": [
         "RAM"
