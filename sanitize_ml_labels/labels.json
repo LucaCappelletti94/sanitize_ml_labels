@@ -196,5 +196,14 @@
         "GloVe",
         "glove",
         "GLOVE"
+    ],
+    "TransE": [
+        "transe"
+    ],
+    "TransH": [
+        "transh"
+    ],
+    "TransR": [
+        "transr"
     ]
 }
