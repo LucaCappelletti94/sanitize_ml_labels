@@ -4,6 +4,12 @@ sanitize_ml_labels
 
 Simple python package to sanitize in a standard way ML-related labels.
 
+Why do I need this?
+-------------------
+So you have some kind of plot and you have some ML-related labels.
+Since I always rename and sanitize them the same way, I have prepared
+this package to always sanitize them in a standard fashion.
+
 How do I install this package?
 ----------------------------------------------
 As usual, just download it using pip:
@@ -12,37 +18,6 @@ As usual, just download it using pip:
 
     pip install sanitize_ml_labels
 
-Tests Coverage
-----------------------------------------------
-I have strived to mantain a 100% code coverage in this project:
-
-+---------------------------------------------------+------------+---------+----------+----------+
-| Module                                            | statements | missing | excluded | coverage |
-+===================================================+============+=========+==========+==========+
-| Total                                             | 84         | 0       | 0        | 100%     |
-+---------------------------------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels/__init__.py                    | 3          | 0       | 0        | 100%     |
-+---------------------------------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels/__version__.py                 | 1          | 0       | 0        | 100%     |
-+---------------------------------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels/is_normalized_metric.py        | 10         | 0       | 0        | 100%     |
-+---------------------------------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels/find_true_hyphenated_words.py  | 19         | 0       | 0        | 100%     |
-+---------------------------------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels/sanitize_ml_labels.py          | 70         | 0       | 0        | 100%     |
-+---------------------------------------------------+------------+---------+----------+----------+
-
-You can verify the test coverage of this repository by running in its root:
-
-.. code:: bash
-
-    pytest --cov
-
-Why do I need this?
--------------------
-So you have some kind of plot and you have some ML-related labels.
-Since I always rename and sanitize them the same way, I have prepared
-this package to always sanitize them in a standard fashion.
 
 Usage examples
 ----------------------------------------------
@@ -133,6 +108,32 @@ New features and issues
 -----------------------
 As always, for new features and issues you can either open a new issue and pull request.
 A pull request will always be the quicker way, but I'll look into the issues when I get the time.
+
+Tests Coverage
+----------------------------------------------
+I have strived to mantain a 100% code coverage in this project:
+
++---------------------------------------------------+------------+---------+----------+----------+
+| Module                                            | statements | missing | excluded | coverage |
++===================================================+============+=========+==========+==========+
+| Total                                             | 84         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/__init__.py                    | 3          | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/__version__.py                 | 1          | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/is_normalized_metric.py        | 10         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/find_true_hyphenated_words.py  | 19         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/sanitize_ml_labels.py          | 70         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+
+You can verify the test coverage of this repository by running in its root:
+
+.. code:: bash
+
+    pytest --cov
 
 .. |pip| image:: https://badge.fury.io/py/sanitize-ml-labels.svg
     :target: https://badge.fury.io/py/sanitize-ml-labels
