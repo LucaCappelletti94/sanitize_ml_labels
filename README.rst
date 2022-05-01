@@ -55,7 +55,7 @@ Corner cases
 ~~~~~~~~~~~~~~~~
 In some cases, you may have a combination of terms separated by hyphens that must be removed, plus words
 that are actually correctly written separated by hyphens. We approach this problem with an heuristic
-based on an `extended list of over 45K hyphenated english words <>`__, originally retrieved from
+based on an `extended list of over 45K hyphenated english words <https://github.com/LucaCappelletti94/sanitize_ml_labels/blob/master/hyphenations.json.gz>`__, originally retrieved from
 the `Metadata consulting website <https://metadataconsulting.blogspot.com/2019/07/An-extensive-massive-near-complete-list-of-all-English-Hyphenated-words.html>`__.
 
 From such a word list, we generate an index by running:
