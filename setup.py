@@ -46,8 +46,8 @@ setup(
     description="Simple python package to sanitize in a standard way ML-related labels.",
     long_description=long_description,
     url="https://github.com/LucaCappelletti94/sanitize_ml_labels",
-    author="Luca Cappelletti",
-    author_email="cappelletti.luca94@gmail.com",
+    author="Luca Cappelletti,Tommaso Fontana",
+    author_email="cappelletti.luca94@gmail.com,tommaso.fontana.96@gmail.com",
     # Choose your license
     license='MIT',
     include_package_data=True,
