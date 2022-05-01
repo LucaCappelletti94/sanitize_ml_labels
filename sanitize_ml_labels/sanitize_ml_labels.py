@@ -1,6 +1,7 @@
 from typing import List, Dict, Union
 import re
 import compress_json
+from .find_true_hyphenated_words import find_true_hyphenated_words
 
 
 def consonants_to_upper(label: str) -> str:
@@ -206,6 +207,7 @@ def sanitize_ml_labels(
     detect_and_remove_homogeneous_descriptors: bool = True,
     replace_defaults: bool = True,
     soft_capitalization: bool = True,
+    preserve_true_hyphenation: bool = True,
     custom_defaults: Dict[str, Union[List[str], str]] = None
 ) -> List[str]:
     """Return sanitized labels in standard way.
@@ -225,6 +227,13 @@ def sanitize_ml_labels(
     soft_capitalization: bool = True
         Whetever to apply soft capitalization,
         replacing capitalization only when no capitalization is already present.
+    preserve_true_hyphenation: bool = True
+        Whether we should try to preserve the true hyphenation
+        when the hyphen character should be otherwise removed.
+        Consider that this is done through a comprehensive heuristic
+        using over 45k hyphenated words from the English language.
+    custom_defaults: Dict[str, Union[List[str], str]] = None
+        List of custom defaults to be used for remapping.
 
     Returns
     -------
@@ -268,12 +277,56 @@ def sanitize_ml_labels(
         ])
         labels = apply_replace_defaults(labels, custom_defaults)
 
+    # If the hyphen character is among the characters that we should
+    # remove to normalize the label and it is requested to preserve
+    # the true hyphenation wherever possible, we try to identify
+    # the true hyphenated words through an heuristic
+    need_to_run_hyphenation_check = (
+        "-" in replace_with_spaces and 
+        preserve_true_hyphenation and
+        any("-" in label for label in labels)
+    )
+
+    if need_to_run_hyphenation_check:
+        new_labels = []
+        hyphenated_words = []
+        for label in labels:
+            if "-" in label:
+                lowercase_label = label.lower()
+                true_hyphenated_words = find_true_hyphenated_words(lowercase_label)
+                print(true_hyphenated_words)
+                for true_hyphenated_word in true_hyphenated_words:
+                    position = lowercase_label.find(true_hyphenated_word)
+                    true_hyphenated_word_with_possible_capitalization = label[position:position+len(true_hyphenated_word)]
+                    label = label.replace(true_hyphenated_word_with_possible_capitalization, "{{word{number}}}".format(
+                        number=len(hyphenated_words)
+                    ))
+                    hyphenated_words.append(true_hyphenated_word_with_possible_capitalization)
+            new_labels.append(label)
+        
+        # We update the current labels with the new labels
+        # that are now wrapped to avoid to remove hyphenated words.
+        labels = new_labels
+
     labels = [
         targets_to_spaces(label, replace_with_spaces)
         for label in labels
     ]
 
     labels = clear_spaces(labels)
+
+    # We now need to restore the hyphenated words which we have
+    # previously wrapped, if we have done so.
+    if need_to_run_hyphenation_check:
+        restored_labels = []
+        for label in labels:
+            for i, hyphenated_word in enumerate(hyphenated_words):
+                label = label.replace(
+                    "{{word{number}}}".format(number=i),
+                    hyphenated_word
+                )
+            restored_labels.append(label)
+        labels = restored_labels
 
     if soft_capitalization:
         labels = apply_soft_capitalization(labels)

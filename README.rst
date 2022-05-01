@@ -16,23 +16,21 @@ Tests Coverage
 ----------------------------------------------
 I have strived to mantain a 100% code coverage in this project:
 
-+------------------------+------------+---------+----------+----------+
-| Module                 | statements | missing | excluded | coverage |
-+========================+============+=========+==========+==========+
-| Total                  | 84         | 0       | 0        | 100%     |
-+------------------------+------------+---------+----------+----------+
-| sanitize               | 3          | 0       | 0        | 100%     |
-| _ml_labels/__init__.py |            |         |          |          |
-+------------------------+------------+---------+----------+----------+
-| sanitize_ml            | 1          | 0       | 0        | 100%     |
-| _labels/__version__.py |            |         |          |          |
-+------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels/is  | 10         | 0       | 0        | 100%     |
-| _normalized_metric.py  |            |         |          |          |
-+------------------------+------------+---------+----------+----------+
-| sanitize_ml_labels     | 70         | 0       | 0        | 100%     |
-| /sanitize_ml_labels.py |            |         |          |          |
-+------------------------+------------+---------+----------+----------+
++---------------------------------------------------+------------+---------+----------+----------+
+| Module                                            | statements | missing | excluded | coverage |
++===================================================+============+=========+==========+==========+
+| Total                                             | 84         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/__init__.py                    | 3          | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/__version__.py                 | 1          | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/is_normalized_metric.py        | 10         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/find_true_hyphenated_words.py  | 19         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
+| sanitize_ml_labels/sanitize_ml_labels.py          | 70         | 0       | 0        | 100%     |
++---------------------------------------------------+------------+---------+----------+----------+
 
 You can verify the test coverage of this repository by running in its root:
 
@@ -77,6 +75,33 @@ Here you have a couple of common examples: you have a set of metrics to normaliz
     sanitize_ml_labels(labels)
 
     # ["MLP", "CNN", "FFNN", "Perceptron"]
+
+Corner cases
+~~~~~~~~~~~~~~~~
+In some cases, you may have a combination of terms separated by hyphens that must be removed, plus words
+that are actually correctly written separated by hyphens. We approach this problem with an heuristic
+based on an `extended list of over 45K hyphenated english words <>`__, originally retrieved from
+the `Metadata consulting website <https://metadataconsulting.blogspot.com/2019/07/An-extensive-massive-near-complete-list-of-all-English-Hyphenated-words.html>`__.
+
+From such a word list, we generate an index by running:
+
+.. code:: python
+
+    index = {}
+    for word in words:
+        word = word.lower()
+        index.setdefault(word[0], []).append((word, word[1:]))
+
+And from there the user experience is transparent and looks as follows:
+
+.. code:: python
+
+    # Running the following
+    sanitize_ml_labels("non-existent-edges-in-graph")
+    # will yield the string `Non-existent edges in graph`
+
+The lookup heuristic to quickly find an hyphenated word in a given label from the large haystack
+was written by `Tommaso Fontana <https://github.com/zommiommy>`__.
 
 
 Extra utilities

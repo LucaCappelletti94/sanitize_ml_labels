@@ -47,6 +47,11 @@ def test_sanitize_ml_labels():
         ("COVID19", "COVID19"): [
             "covid",
             "covid19"
+        ],
+        ("Non-existent", "Non-existent edges non esistent", "Non-existent edges in graph"): [
+            "Non-existent",
+            "non-existent-edges non-esistent",
+            "non-existent-edges-in-graph"
         ]
     }
     errors = []
