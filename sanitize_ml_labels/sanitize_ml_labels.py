@@ -294,7 +294,6 @@ def sanitize_ml_labels(
             if "-" in label:
                 lowercase_label = label.lower()
                 true_hyphenated_words = find_true_hyphenated_words(lowercase_label)
-                print(true_hyphenated_words)
                 for true_hyphenated_word in true_hyphenated_words:
                     position = lowercase_label.find(true_hyphenated_word)
                     true_hyphenated_word_with_possible_capitalization = label[position:position+len(true_hyphenated_word)]
