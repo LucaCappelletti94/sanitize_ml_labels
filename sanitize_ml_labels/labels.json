@@ -205,5 +205,11 @@
     ],
     "TransR": [
         "transr"
+    ],
+    "Decision Tree Classifier": [
+        "DecisionTreeClassifier"
+    ],
+    "Random Forest Classifier": [
+        "RandomForestClassifier"
     ]
 }
