@@ -1,6 +1,7 @@
 from typing import List, Dict, Union
 import re
 import compress_json
+from sqlalchemy import false
 from .find_true_hyphenated_words import find_true_hyphenated_words
 
 
@@ -82,6 +83,38 @@ def have_descriptor(labels: List[str], descriptor: str, generic_words_cooccurrin
         for label in labels
         if label.lower() not in generic_words_cooccurring_with_descriptors
     )
+
+
+def are_real_values_labels(labels: List[str]) -> bool:
+    """Return whether all labels are floating point values.
+
+    Parameters
+    ----------
+    labels: List[str],
+        labels to parse.
+    """
+    for label in labels:
+        try:
+            float(label.strip())
+        except ValueError:
+            return False
+    return True
+
+
+def sanitize_real_valued_labels(labels: List[str]) -> List[str]:
+    """Returns list of real valued labels without trailing zeros.
+
+    Parameters
+    ----------
+    labels: List[str],
+        labels to parse.
+    """
+    return [
+        label.rstrip(" .0")
+        if "." in label
+        else label
+        for label in labels
+    ]
 
 
 def remove_descriptor(labels: List[str], descriptor: str) -> List[str]:
@@ -205,6 +238,7 @@ def sanitize_ml_labels(
     upper_case_consonants_clusters: bool = True,
     replace_with_spaces: List[str] = ("-", "_", ":", "<", ">"),
     detect_and_remove_homogeneous_descriptors: bool = True,
+    detect_and_remove_trailing_zeros: bool = True,
     replace_defaults: bool = True,
     soft_capitalization: bool = True,
     preserve_true_hyphenation: bool = True,
@@ -222,6 +256,8 @@ def sanitize_ml_labels(
         Characters to be replaced with spaces.
     detect_and_remove_homogeneous_descriptors: bool = True
         Whetever to remove the known descriptors when all terms contain it.
+    detect_and_remove_trailing_zeros: bool = True
+        Whether to remove trailing zeros when labels are all numeric.
     replace_defaults: bool = True
         Whetever to replace default terms.
     soft_capitalization: bool = True
@@ -277,12 +313,16 @@ def sanitize_ml_labels(
         ])
         labels = apply_replace_defaults(labels, custom_defaults)
 
+    if detect_and_remove_trailing_zeros:
+        if are_real_values_labels(labels):
+            labels = sanitize_real_valued_labels(labels)
+
     # If the hyphen character is among the characters that we should
     # remove to normalize the label and it is requested to preserve
     # the true hyphenation wherever possible, we try to identify
     # the true hyphenated words through an heuristic
     need_to_run_hyphenation_check = (
-        "-" in replace_with_spaces and 
+        "-" in replace_with_spaces and
         preserve_true_hyphenation and
         any("-" in label for label in labels)
     )
@@ -293,16 +333,19 @@ def sanitize_ml_labels(
         for label in labels:
             if "-" in label:
                 lowercase_label = label.lower()
-                true_hyphenated_words = find_true_hyphenated_words(lowercase_label)
+                true_hyphenated_words = find_true_hyphenated_words(
+                    lowercase_label)
                 for true_hyphenated_word in true_hyphenated_words:
                     position = lowercase_label.find(true_hyphenated_word)
-                    true_hyphenated_word_with_possible_capitalization = label[position:position+len(true_hyphenated_word)]
+                    true_hyphenated_word_with_possible_capitalization = label[position:position+len(
+                        true_hyphenated_word)]
                     label = label.replace(true_hyphenated_word_with_possible_capitalization, "{{word{number}}}".format(
                         number=len(hyphenated_words)
                     ))
-                    hyphenated_words.append(true_hyphenated_word_with_possible_capitalization)
+                    hyphenated_words.append(
+                        true_hyphenated_word_with_possible_capitalization)
             new_labels.append(label)
-        
+
         # We update the current labels with the new labels
         # that are now wrapped to avoid to remove hyphenated words.
         labels = new_labels

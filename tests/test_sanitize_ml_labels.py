@@ -52,7 +52,27 @@ def test_sanitize_ml_labels():
             "Non-existent",
             "non-existent-edges non-esistent",
             "non-existent-edges-in-graph"
-        ]
+        ],
+        ("1", "2", "3"): [
+            "1.00000",
+            "2.00",
+            "3.0"
+        ],
+        ("1", "2", "3"): [
+            "1.00000",
+            "2.00      ",
+            "  3.0"
+        ],
+        ("1", "2", "3"): [
+            "1.0",
+            "2.0",
+            "3"
+        ],
+        ("1.5", "2.05", "3"): [
+            "1.5",
+            "2.05",
+            "3.0"
+        ],
     }
     errors = []
     for goals, starts in tests.items():
