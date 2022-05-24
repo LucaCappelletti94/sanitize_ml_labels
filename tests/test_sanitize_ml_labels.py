@@ -73,6 +73,11 @@ def test_sanitize_ml_labels():
             "2.05",
             "3.0"
         ],
+        ("10000", "100", "3"): [
+            "10000.0",
+            "100.0",
+            "3.0"
+        ],
     }
     errors = []
     for goals, starts in tests.items():

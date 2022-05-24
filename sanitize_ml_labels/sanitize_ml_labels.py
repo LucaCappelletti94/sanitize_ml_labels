@@ -1,6 +1,7 @@
 from typing import List, Dict, Union
 import re
 import compress_json
+from more_itertools import rstrip
 from sqlalchemy import false
 from .find_true_hyphenated_words import find_true_hyphenated_words
 
@@ -109,12 +110,19 @@ def sanitize_real_valued_labels(labels: List[str]) -> List[str]:
     labels: List[str],
         labels to parse.
     """
-    return [
-        label.rstrip(" .0")
-        if "." in label
-        else label
-        for label in labels
-    ]
+    new_labels = []
+    for label in labels:
+        label = label.strip()
+        if "." in label:
+            if label.endswith(".0"):
+                label = label.split(".")[0]
+            else:
+                label = ".".join((
+                    label.split(".")[0],
+                    label.split(".")[1].rstrip("0")
+                ))
+        new_labels.append(label)
+    return new_labels
 
 
 def remove_descriptor(labels: List[str], descriptor: str) -> List[str]:
