@@ -78,9 +78,6 @@
     "False discovery rate": [
         "FDR"
     ],
-    "False omission rate": [
-        "FOR"
-    ],
     "Prevalence threshold": [
         "PT"
     ],
