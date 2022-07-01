@@ -19,3 +19,4 @@ htmlcov
 .ipynb_checkpoints
 .pytest_cache
 sanitize_ml_labels.egg-info
+build/
