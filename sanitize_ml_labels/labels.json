@@ -208,5 +208,8 @@
     ],
     "Random Forest Classifier": [
         "RandomForestClassifier"
+    ],
+    "Adamic-Adar": [
+        "AdamicAdar"
     ]
 }

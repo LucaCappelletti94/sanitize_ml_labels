@@ -1,4 +1,6 @@
 [
     "Matthews correlation coefficient",
-    "Markedness"
+    "Markedness",
+    "Cosine similarity",
+    "Cosine distance"
 ]
