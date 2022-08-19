@@ -100,25 +100,28 @@ def are_real_values_labels(labels: List[str]) -> bool:
     return True
 
 
-def sanitize_real_valued_labels(labels: List[str]) -> List[str]:
+def sanitize_real_valued_labels(labels: List[str], maximum_resolution: int) -> List[str]:
     """Returns list of real valued labels without trailing zeros.
 
     Parameters
     ----------
-    labels: List[str],
+    labels: List[str]
         labels to parse.
+    maximum_resolution: int
+        Maximum length of the floating point part.
     """
     new_labels = []
     for label in labels:
         label = label.strip()
         if "." in label:
-            if label.endswith(".0"):
-                label = label.split(".")[0]
-            else:
-                label = ".".join((
-                    label.split(".")[0],
-                    label.split(".")[1].rstrip("0")
-                ))
+            label = "{{:.{maximum_resolution}f}}".format(
+                maximum_resolution=maximum_resolution
+            ).format(float(label))
+            label = ".".join((
+                label.split(".")[0],
+                label.split(".")[1].rstrip("0")
+            )).strip(".")
+
         new_labels.append(label)
     return new_labels
 
@@ -248,6 +251,7 @@ def sanitize_ml_labels(
     replace_defaults: bool = True,
     soft_capitalization: bool = True,
     preserve_true_hyphenation: bool = True,
+    maximum_resolution: int = 3,
     custom_defaults: Dict[str, Union[List[str], str]] = None
 ) -> List[str]:
     """Return sanitized labels in standard way.
@@ -274,6 +278,8 @@ def sanitize_ml_labels(
         when the hyphen character should be otherwise removed.
         Consider that this is done through a comprehensive heuristic
         using over 45k hyphenated words from the English language.
+    maximum_resolution: int = 3
+        Maximum number of digits to preserve in real-valued labels.
     custom_defaults: Dict[str, Union[List[str], str]] = None
         List of custom defaults to be used for remapping.
 
@@ -321,7 +327,10 @@ def sanitize_ml_labels(
 
     if detect_and_remove_trailing_zeros:
         if are_real_values_labels(labels):
-            labels = sanitize_real_valued_labels(labels)
+            labels = sanitize_real_valued_labels(
+                labels,
+                maximum_resolution=maximum_resolution
+            )
 
     # If the hyphen character is among the characters that we should
     # remove to normalize the label and it is requested to preserve
