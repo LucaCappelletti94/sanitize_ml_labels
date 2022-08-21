@@ -93,8 +93,21 @@ def test_sanitize_ml_labels():
         ],
         (
             "Degree-based SPINE",
+            "Second-based SPINE",
         ): [
             "Degree-based SPINE",
+            "Second-based SPINE",
+        ],
+        (
+            "Degree-order SPINE",
+            "Second-order SPINE",
+            "First-order SPINE",
+            "First-order huhu-order SPINE",
+        ): [
+            "Degree-order SPINE",
+            "Second-order SPINE",
+            "First-order SPINE",
+            "First-order huhu-order SPINE",
         ]
     }
     errors = []

@@ -1,5 +1,3 @@
-from typing import Dict
-import os
 import compress_json
 from .sanitize_ml_labels import sanitize_ml_labels
 

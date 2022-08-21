@@ -349,16 +349,22 @@ def sanitize_ml_labels(
             if "-" in label:
                 lowercase_label = label.lower()
                 true_hyphenated_words = find_true_hyphenated_words(
-                    lowercase_label)
+                    lowercase_label
+                )
                 for true_hyphenated_word in true_hyphenated_words:
+                    lowercase_label = label.lower()
                     position = lowercase_label.find(true_hyphenated_word)
+                    if position == -1:
+                        continue
                     true_hyphenated_word_with_possible_capitalization = label[position:position+len(
-                        true_hyphenated_word)]
+                        true_hyphenated_word
+                    )]
                     label = label.replace(true_hyphenated_word_with_possible_capitalization, "{{word{number}}}".format(
                         number=len(hyphenated_words)
                     ))
                     hyphenated_words.append(
-                        true_hyphenated_word_with_possible_capitalization)
+                        true_hyphenated_word_with_possible_capitalization
+                    )
             new_labels.append(label)
 
         # We update the current labels with the new labels
