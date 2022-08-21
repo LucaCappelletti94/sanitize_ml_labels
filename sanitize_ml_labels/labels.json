@@ -101,7 +101,10 @@
     "Diagnostic odds ratio": [
         "DOR"
     ],
-    "GraPE": [
+    "PyKEEN": [
+        "pykeen"
+    ],
+    "GRAPE": [
         "grape"
     ],
     "SPINE": [
