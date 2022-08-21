@@ -91,6 +91,11 @@ def test_sanitize_ml_labels():
             "0.634358787769786561",
             "7"
         ],
+        (
+            "Degree-based SPINE",
+        ): [
+            "Degree-based SPINE",
+        ]
     }
     errors = []
     for goals, starts in tests.items():
