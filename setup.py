@@ -60,7 +60,8 @@ setup(
     tests_require=test_deps,
     # Add here the package dependencies
     install_requires=[
-        "compress_json"
+        "compress_json",
+        "support_developer>=1.0.2"
     ],
     extras_require=extras,
 )
