@@ -107,6 +107,21 @@
     "GRAPE": [
         "grape"
     ],
+    "Jaccard coefficient": [
+        "JaccardCoefficient",
+        "Jaccardcoefficient",
+        "jaccardcoefficient"
+    ],
+    "Preferential attachment": [
+        "PreferentialAttachment",
+        "Preferentialattachment",
+        "preferentialattachment"
+    ],
+    "Cosine similarity": [
+        "CosineSimilarity",
+        "Cosinesimilarity",
+        "cosinesimilarity"
+    ],
     "SPINE": [
         "spine"
     ],
