@@ -122,6 +122,9 @@
         "Cosinesimilarity",
         "cosinesimilarity"
     ],
+    "Resource Allocation Index": [
+        "ResourceAllocationIndex"
+    ],
     "SPINE": [
         "spine"
     ],
@@ -164,6 +167,10 @@
     "MSE": [
         "MSE",
         "mean_squared_error"
+    ],
+    "MLE": [
+        "MLE",
+        "Maximum likelihood estimation"
     ],
     "Matthews correlation coefficient": [
         "MCC",
