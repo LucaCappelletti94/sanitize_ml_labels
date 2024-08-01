@@ -1,0 +1,8 @@
+name: Python Package CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
