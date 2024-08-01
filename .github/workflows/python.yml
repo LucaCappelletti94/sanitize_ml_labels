@@ -26,3 +26,6 @@ jobs:
             pip install --upgrade pip
             pip install black
             pip install ".[test]" # Or -r requirements.txt
+
+      - name: Lint with black
+        run: black --check .
