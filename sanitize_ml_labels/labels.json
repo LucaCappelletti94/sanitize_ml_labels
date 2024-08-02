@@ -401,10 +401,20 @@
     ],
     "GCN": [
         "gcn",
+        "graph convolutional network",
+        "convolutional graph network",
+        "graph convolutional neural network",
+        "convolutional graph neural network",
         "graph_convolutional_network"
+    ],
+    "LLM": [
+        "llm",
+        "Large Language Model"
     ],
     "GAT": [
         "gat",
+        "Graph Attention Network",
+        "Graph Attention Neural Network",
         "graph_attention_network"
     ],
     "GraphSAGE": [
@@ -424,6 +434,7 @@
     ],
     "GNN": [
         "gnn",
+        "Graph Neural Network",
         "graph_neural_network"
     ],
     "PinSAGE": [
