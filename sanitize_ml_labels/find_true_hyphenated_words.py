@@ -39,4 +39,4 @@ def find_true_hyphenated_words(lowercase_label: str) -> List[str]:
         if substr == "":
             result.append(word)
 
-    return sorted(result, key=lambda word: len(word), reverse=True)
+    return sorted(result, reverse=True)
