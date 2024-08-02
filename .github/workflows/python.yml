@@ -32,6 +32,9 @@ jobs:
 
       - name: Test with pytest
         run: pytest
+      
+      - name: Test executing hyphenation algorithm
+        run: python hyphenation.py
     
       - name: Build package
         run: |

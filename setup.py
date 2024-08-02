@@ -25,7 +25,6 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-generate_hyphenated_words_index()
 __version__ = find_version("sanitize_ml_labels", "__version__.py")
 
 setup(
