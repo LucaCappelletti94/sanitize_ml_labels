@@ -338,7 +338,7 @@
         "cnn",
         "convolutional_neural_network"
     ],
-    "RRN": [
+    "RNN": [
         "rnn",
         "Recurrent Neural Network",
         "recurrent_neural_network"

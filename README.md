@@ -7,7 +7,7 @@
 
 Sanitize ML Labels is a Python package designed to standardize and sanitize ML-related labels.
 
-If you have ML-related labels, and you find yourself renaming and sanitizing them in a consistent manner, this package ensures they are always sanitized in a standard way.
+If you have ML-related labels, and you find yourself renaming and sanitizing them in a consistent manner, with the proper capitalizaton, this package ensures they are always sanitized in a standard way.
 
 ## How Do I Install This Package?
 
@@ -47,14 +47,39 @@ assert sanitize_ml_labels(labels) == [
 from sanitize_ml_labels import sanitize_ml_labels
 
 labels = [
+    "mlp",
+    "cnn",
+    "ffNN",
+    "Feed-forward neural network",
+    "perceptron",
+    "recurrent neural network",
+    "LStM"
+]
+
+assert sanitize_ml_labels(labels) == [
+    "MLP",
+    "CNN",
+    "FFNN",
+    "FFNN",
+    "Perceptron",
+    "RNN",
+    "LSTM"
+]
+```
+
+Sometimes, it happens that you have prefixed all your models with "vanilla" or "simple" or "basic". This package can help you remove these prefixes.
+
+```python
+from sanitize_ml_labels import sanitize_ml_labels
+
+labels = [
     "vanilla mlp",
     "vanilla cnn",
     "vanilla ffnn",
     "vanilla perceptron"
 ]
 
-print(sanitize_ml_labels(labels))
-# Output: ["MLP", "CNN", "FFNN", "Perceptron"]
+assert sanitize_ml_labels(labels) == ["MLP", "CNN", "FFNN", "Perceptron"]
 ```
 
 ## Corner Cases
@@ -67,15 +92,14 @@ The lookup heuristic, written by [Tommaso Fontana](https://github.com/zommiommy)
 from sanitize_ml_labels import sanitize_ml_labels
 
 # Running the following
-print(sanitize_ml_labels("non-existent-edges-in-graph"))
-# Output: Non-existent edges in graph
+assert sanitize_ml_labels("non-existent-edges-in-graph") == "Non-existent edges in graph"
 ```
 
 ## Extra Utilities
 
 In addition to label sanitization, the package provides methods to check metric normalization:
 
-### `is_normalized_metric`
+### Is normalized metric
 
 Validates if a metric falls within the range [0, 1].
 
@@ -89,7 +113,7 @@ print(is_normalized_metric("AUROC")) # True
 print(is_normalized_metric("auprc")) # True
 ```
 
-### `is_absolutely_normalized_metric`
+### Is absolutely normalized metric
 
 Validates if a metric falls within the range [-1, 1].
 

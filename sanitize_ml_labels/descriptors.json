@@ -1,5 +1,7 @@
 [
     "vanilla",
+    "basic",
+    "simple",
     "biolink",
     "http://purl.obolibrary.org/obo/"
 ]
