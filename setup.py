@@ -2,7 +2,6 @@
 
 import os
 import re
-import compress_json
 
 from setuptools import find_packages, setup
 
@@ -11,22 +10,6 @@ here = os.path.abspath(os.path.dirname(__file__))
 # Get the long description from the relevant file
 with open(os.path.join(here, "README.md", encoding="utf8"), encoding="utf-8") as f:
     long_description = f.read()
-
-
-def generate_hyphenated_words_index():
-    """Generate the index of hyphenated words."""
-    if os.path.exists("hyphenations.json"):
-        compress_json.dump(
-            sorted(compress_json.load("hyphenations.json")), "hyphenations.json.gz"
-        )
-        os.remove("hyphenations.json")
-
-    index = {}
-    for word in compress_json.load("hyphenations.json.gz"):
-        word = word.lower()
-        index.setdefault(word[0], []).append((word, word[1:]))
-
-    compress_json.dump(index, "sanitize_ml_labels/hyphenated_words_index.json.gz")
 
 
 def read(*parts):
