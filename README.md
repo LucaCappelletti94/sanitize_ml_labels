@@ -106,11 +106,11 @@ Validates if a metric falls within the range [0, 1].
 ```python
 from sanitize_ml_labels import is_normalized_metric
 
-print(is_normalized_metric("MSE")) # False
-print(is_normalized_metric("acc")) # True
-print(is_normalized_metric("accuracy")) # True
-print(is_normalized_metric("AUROC")) # True
-print(is_normalized_metric("auprc")) # True
+assert not is_normalized_metric("MSE")
+assert is_normalized_metric("acc")
+assert is_normalized_metric("accuracy")
+assert is_normalized_metric("AUROC")
+assert is_normalized_metric("auprc")
 ```
 
 ### Is absolutely normalized metric
@@ -120,9 +120,9 @@ Validates if a metric falls within the range [-1, 1].
 ```python
 from sanitize_ml_labels import is_absolutely_normalized_metric
 
-print(is_absolutely_normalized_metric("auprc")) # False
-print(is_absolutely_normalized_metric("MCC")) # True
-print(is_absolutely_normalized_metric("Markedness")) # True
+assert not is_absolutely_normalized_metric("auprc")
+assert is_absolutely_normalized_metric("MCC")
+assert is_absolutely_normalized_metric("Markedness")
 ```
 
 ### Shoud be maximized
