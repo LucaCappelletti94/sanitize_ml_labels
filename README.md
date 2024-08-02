@@ -70,17 +70,15 @@ assert sanitize_ml_labels("vanilla mlp") == "MLP"
 assert sanitize_ml_labels("vanilla cnn") == "CNN"
 
 assert sanitize_ml_labels([
-    "Graph Convolutional Network",
     "Large Language Model",
     "transe",
     "Generative Pre-trained Transformer",
-    "Generative Pretrained Transformer",
     "Graph Convolutional Neural Network",
     "Convolutional Graph Neural Network",
     "Graph Neural Network",
     "Graph Attention Network",
     "Graph Attention Neural Network",
-]) == ["GCN","LLM","TransE","GPT","GPT","GCN","GCN","GNN","GAT","GAT"]
+]) == ["LLM","TransE","GPT","GCN","GCN","GNN","GAT","GAT"]
 ```
 
 Sometimes, it happens that you have prefixed all your models with "vanilla" or "simple" or "basic". This package can help you remove these prefixes.
