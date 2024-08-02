@@ -1,7 +1,9 @@
+"""Module to sanitize machine learning labels."""
+
 from typing import List, Dict, Union
 import re
 import compress_json
-from .find_true_hyphenated_words import find_true_hyphenated_words
+from sanitize_ml_labels.find_true_hyphenated_words import find_true_hyphenated_words
 
 
 def consonants_to_upper(label: str) -> str:
@@ -23,8 +25,8 @@ def consonants_to_upper(label: str) -> str:
     """
     return re.sub(
         r"\b([b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]{2,})\b",
-        lambda x:  x.group(1).upper(),
-        label
+        lambda x: x.group(1).upper(),
+        label,
     )
 
 
@@ -53,7 +55,11 @@ def targets_to_spaces(label: str, targets: List[str]) -> str:
     return label
 
 
-def have_descriptor(labels: List[str], descriptor: str, generic_words_cooccurring_with_descriptors: List[str]) -> bool:
+def have_descriptor(
+    labels: List[str],
+    descriptor: str,
+    generic_words_cooccurring_with_descriptors: List[str],
+) -> bool:
     """Return boolean representing if all labels contain the given descriptor.
 
     Parameters
@@ -100,7 +106,9 @@ def are_real_values_labels(labels: List[str]) -> bool:
     return True
 
 
-def sanitize_real_valued_labels(labels: List[str], maximum_resolution: int) -> List[str]:
+def sanitize_real_valued_labels(
+    labels: List[str], maximum_resolution: int
+) -> List[str]:
     """Returns list of real valued labels without trailing zeros.
 
     Parameters
@@ -114,13 +122,10 @@ def sanitize_real_valued_labels(labels: List[str], maximum_resolution: int) -> L
     for label in labels:
         label = label.strip()
         if "." in label:
-            label = "{{:.{maximum_resolution}f}}".format(
-                maximum_resolution=maximum_resolution
-            ).format(float(label))
-            label = ".".join((
-                label.split(".")[0],
-                label.split(".")[1].rstrip("0")
-            )).strip(".")
+            label = f"{{:.{maximum_resolution}f}}".format(float(label))
+            label = ".".join(
+                (label.split(".")[0], label.split(".")[1].rstrip("0"))
+            ).strip(".")
 
         new_labels.append(label)
     return new_labels
@@ -128,26 +133,23 @@ def sanitize_real_valued_labels(labels: List[str], maximum_resolution: int) -> L
 
 def remove_descriptor(labels: List[str], descriptor: str) -> List[str]:
     """Return list of labels without the term descriptor"""
-    return [
-        label.replace(descriptor, "")
-        for label in labels
-    ]
+    return [label.replace(descriptor, "") for label in labels]
 
 
-def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[str]]) -> List[str]:
+def apply_replace_defaults(
+    labels: List[str], custom_defaults: Dict[str, List[str]]
+) -> List[str]:
     """Return list of labels with replaced defaults."""
     defaults = {
         **{
-            key: [
-                "(?<![a-z]){}(?![a-z])".format(val)
-                for val in values
-            ]
+            key: [f"(?<![a-z]){val}(?![a-z])" for val in values]
             for key, values in compress_json.local_load("labels.json").items()
         },
-        **custom_defaults
+        **custom_defaults,
     }
     new_labels = []
     for label in labels:
+        print("LABEL", label)
         replace_candidates = []
         for default, targets in defaults.items():
             for target in targets:
@@ -160,25 +162,30 @@ def apply_replace_defaults(labels: List[str], custom_defaults: Dict[str, List[st
         # The following is required to avoid replacing substrings.
 
         replace_candidates = sorted(
-            replace_candidates,
-            key=lambda x: len(x[0]),
-            reverse=False
+            replace_candidates, key=lambda x: len(x[0]), reverse=False
         )
+
+        # If a smaller candidate default is fully contained in another
+        # larger candidate default, we remove the smaller candidate default.
+
+        print("BEFORE", replace_candidates)
 
         replace_candidates = [
-            (j, val)
-            for i, (j, val) in enumerate(replace_candidates)
-            if all(j not in k.lower() for _, k in replace_candidates[i + 1:])
+            (target, val)
+            for i, (target, val) in enumerate(replace_candidates)
+            if all(target.lower() not in k.lower() for _, k in replace_candidates[i + 1 :])
         ]
-
+        
         replace_candidates = sorted(
-            replace_candidates,
-            key=lambda x: len(x[0]),
-            reverse=True
+            replace_candidates, key=lambda x: len(x[0]), reverse=True
         )
+
+        print("AFTER", replace_candidates)
 
         for target, default in replace_candidates:
             label = label.replace(target, default)
+
+        print("AFTER REPLACE", label)
         new_labels.append(label)
     return new_labels
 
@@ -195,14 +202,7 @@ def clear_spaces(labels: List[str]) -> List[str]:
     ---------------------------------
     List of labels without duplicated spaces.
     """
-    return [
-        " ".join([
-            term
-            for term in label.split()
-            if term
-        ])
-        for label in labels
-    ]
+    return [" ".join([term for term in label.split() if term]) for label in labels]
 
 
 def apply_soft_capitalization(labels: List[str]) -> List[str]:
@@ -217,11 +217,7 @@ def apply_soft_capitalization(labels: List[str]) -> List[str]:
     ------------------------
     List of labels with soft capitalization applied.
     """
-    return [
-        label.capitalize() if label.lower() == label
-        else label
-        for label in labels
-    ]
+    return [label.capitalize() if label.lower() == label else label for label in labels]
 
 
 def to_string(labels: List) -> List[str]:
@@ -236,10 +232,7 @@ def to_string(labels: List) -> List[str]:
     -----------------------
     List with labels converted to strings.
     """
-    return [
-        str(label)
-        for label in labels
-    ]
+    return [str(label) for label in labels]
 
 
 def sanitize_ml_labels(
@@ -252,8 +245,8 @@ def sanitize_ml_labels(
     soft_capitalization: bool = True,
     preserve_true_hyphenation: bool = True,
     maximum_resolution: int = 3,
-    custom_defaults: Dict[str, Union[List[str], str]] = None
-) -> List[str]:
+    custom_defaults: Dict[str, Union[List[str], str]] = None,
+) -> Union[List[str], str]:
     """Return sanitized labels in standard way.
 
     Parameters
@@ -304,11 +297,10 @@ def sanitize_ml_labels(
             "generic_words_cooccurring_with_descriptors.json"
         )
         for descriptor in compress_json.local_load("descriptors.json"):
-            if have_descriptor(labels, descriptor, generic_words_cooccurring_with_descriptors):
-                labels = remove_descriptor(
-                    labels,
-                    descriptor
-                )
+            if have_descriptor(
+                labels, descriptor, generic_words_cooccurring_with_descriptors
+            ):
+                labels = remove_descriptor(labels, descriptor)
 
     if soft_capitalization:
         labels = apply_soft_capitalization(labels)
@@ -317,17 +309,17 @@ def sanitize_ml_labels(
         if custom_defaults is None:
             custom_defaults = dict()
 
-        custom_defaults = dict([
-            (key, value) if isinstance(value, list)
-            else (key, [value])
-            for key, value in custom_defaults.items()
-        ])
+        custom_defaults = dict(
+            [
+                (key, value) if isinstance(value, list) else (key, [value])
+                for key, value in custom_defaults.items()
+            ]
+        )
         labels = apply_replace_defaults(labels, custom_defaults)
 
     if detect_and_remove_trailing_zeros and are_real_values_labels(labels):
         labels = sanitize_real_valued_labels(
-            labels,
-            maximum_resolution=maximum_resolution
+            labels, maximum_resolution=maximum_resolution
         )
     else:
 
@@ -336,9 +328,9 @@ def sanitize_ml_labels(
         # the true hyphenation wherever possible, we try to identify
         # the true hyphenated words through an heuristic
         need_to_run_hyphenation_check = (
-            "-" in replace_with_spaces and
-            preserve_true_hyphenation and
-            any("-" in label for label in labels)
+            "-" in replace_with_spaces
+            and preserve_true_hyphenation
+            and any("-" in label for label in labels)
         )
 
         if need_to_run_hyphenation_check:
@@ -347,20 +339,19 @@ def sanitize_ml_labels(
             for label in labels:
                 if "-" in label:
                     lowercase_label = label.lower()
-                    true_hyphenated_words = find_true_hyphenated_words(
-                        lowercase_label
-                    )
+                    true_hyphenated_words = find_true_hyphenated_words(lowercase_label)
                     for true_hyphenated_word in true_hyphenated_words:
                         lowercase_label = label.lower()
                         position = lowercase_label.find(true_hyphenated_word)
                         if position == -1:
                             continue
-                        true_hyphenated_word_with_possible_capitalization = label[position:position+len(
-                            true_hyphenated_word
-                        )]
-                        label = label.replace(true_hyphenated_word_with_possible_capitalization, "{{word{number}}}".format(
-                            number=len(hyphenated_words)
-                        ))
+                        true_hyphenated_word_with_possible_capitalization = label[
+                            position : position + len(true_hyphenated_word)
+                        ]
+                        label = label.replace(
+                            true_hyphenated_word_with_possible_capitalization,
+                            f"{{word{len(hyphenated_words)}}}",
+                        )
                         hyphenated_words.append(
                             true_hyphenated_word_with_possible_capitalization
                         )
@@ -370,10 +361,7 @@ def sanitize_ml_labels(
             # that are now wrapped to avoid to remove hyphenated words.
             labels = new_labels
 
-        labels = [
-            targets_to_spaces(label, replace_with_spaces)
-            for label in labels
-        ]
+        labels = [targets_to_spaces(label, replace_with_spaces) for label in labels]
 
         labels = clear_spaces(labels)
 
@@ -382,11 +370,8 @@ def sanitize_ml_labels(
         if need_to_run_hyphenation_check:
             restored_labels = []
             for label in labels:
-                for i, hyphenated_word in enumerate(hyphenated_words):
-                    label = label.replace(
-                        "{{word{number}}}".format(number=i),
-                        hyphenated_word
-                    )
+                for number, hyphenated_word in enumerate(hyphenated_words):
+                    label = label.replace(f"{{word{number}}}", hyphenated_word)
                 restored_labels.append(label)
             labels = restored_labels
 
@@ -394,10 +379,7 @@ def sanitize_ml_labels(
             labels = apply_soft_capitalization(labels)
 
         if upper_case_consonants_clusters:
-            labels = [
-                consonants_to_upper(label)
-                for label in labels
-            ]
+            labels = [consonants_to_upper(label) for label in labels]
 
     if single_label:
         return labels[0]

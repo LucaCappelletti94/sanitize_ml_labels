@@ -4,5 +4,6 @@
     "False discovery rate",
     "False omission rate",
     "Prevalence threshold",
-    "Threat score"
+    "Threat score",
+    "MSE"
 ]

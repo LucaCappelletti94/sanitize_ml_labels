@@ -20,3 +20,4 @@ htmlcov
 .pytest_cache
 sanitize_ml_labels.egg-info
 build/
+test_readme.py

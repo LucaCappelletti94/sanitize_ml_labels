@@ -62,15 +62,19 @@
         "recall_\\d+"
     ],
     "F1 Score": [
+        "F1",
         "F1Score",
         "f1_score",
-        "f1 score"
+        "f1 score",
+        "f1-score"
     ],
     "ReLU": [
-        "relu"
+        "relu",
+        "Rectified Linear Unit"
     ],
     "Balanced accuracy": [
-        "BA"
+        "BA",
+        "balanced_accuracy"
     ],
     "Negative predictive value": [
         "NPV"
@@ -129,40 +133,41 @@
         "spine"
     ],
     "PReLU": [
-        "prelu"
+        "prelu",
+        "Parametric Rectified Linear Unit"
     ],
     "SeLU": [
-        "SeLU"
+        "SeLU",
+        "Scaled Exponential Linear Unit"
     ],
     "CAE": [
-        "cae"
+        "cae",
+        "Convolutional Autoencoder",
+        "convolutional_autoencoder",
+        "Convolutional Auto Encoder"
     ],
     "FFNN": [
-        "ffnn"
-    ],
-    "DAE": [
-        "dae"
+        "ffnn",
+        "Feedforward Neural Network",
+        "Feed-Forward Neural Network"
     ],
     "VAE": [
-        "vae"
-    ],
-    "SAE": [
-        "sae"
-    ],
-    "SDAE": [
-        "sdae"
-    ],
-    "MSDAE": [
-        "msdae"
+        "vae",
+        "Variational Autoencoder",
+        "Variational Auto Encoder",
+        "Variational Auto-Encoder"
     ],
     "GAN": [
-        "gan"
+        "gan",
+        "Generative Adversarial Network"
     ],
     "POC": [
-        "poc"
+        "poc",
+        "Proof of Concept"
     ],
     "RANSAC": [
-        "ransac"
+        "ransac",
+        "Random sample consensus"
     ],
     "MSE": [
         "MSE",
@@ -178,32 +183,40 @@
         "mean square contingency coefficient"
     ],
     "RAM": [
-        "RAM"
+        "RAM",
+        "Random Access Memory"
     ],
     "GPU": [
-        "GPU"
+        "GPU",
+        "Graphics Processing Unit"
     ],
     "CPU": [
-        "CPU"
+        "CPU",
+        "Central Processing Unit"
     ],
     "TPU": [
-        "TPU"
+        "TPU",
+        "Tensor Processing Unit"
     ],
     "FPU": [
-        "FPU"
+        "FPU",
+        "Floating Point Unit"
     ],
     "ALU": [
-        "ALU"
+        "ALU",
+        "Arithmetic Logic Unit"
     ],
     "COVID19": [
         "Covid",
         "Covid19"
     ],
     "PSU": [
-        "PSU"
+        "PSU",
+        "Power Supply Unit"
     ],
     "Learning rate": [
-        "lr"
+        "lr",
+        "learning_rate"
     ],
     "CBOW": [
         "cbow",
@@ -236,5 +249,190 @@
     ],
     "Adamic-Adar": [
         "AdamicAdar"
+    ],
+    "Mean Absolute Error": [
+        "mae",
+        "mean_absolute_error"
+    ],
+    "Root Mean Square Error": [
+        "rmse",
+        "root_mean_square_error"
+    ],
+    "Root Mean Square Logarithmic Error": [
+        "rmsle",
+        "root_mean_square_logarithmic_error"
+    ],
+    "Log Loss": [
+        "logloss",
+        "log_loss"
+    ],
+    "Hinge Loss": [
+        "hingeloss",
+        "hinge_loss"
+    ],
+    "R-Squared": [
+        "r2",
+        "r_squared",
+        "r2_score"
+    ],
+    "Cross-Entropy Loss": [
+        "cross_entropy_loss",
+        "crossentropyloss"
+    ],
+    "Mean Squared Logarithmic Error": [
+        "msle",
+        "mean_squared_logarithmic_error"
+    ],
+    "Naive Bayes": [
+        "naive_bayes",
+        "naivebayes"
+    ],
+    "Support Vector Machine": [
+        "svm",
+        "support_vector_machine"
+    ],
+    "K-Nearest Neighbors": [
+        "knn",
+        "k_nearest_neighbors",
+        "k-nearest-neighbors"
+    ],
+    "Principal Component Analysis": [
+        "pca",
+        "principal_component_analysis"
+    ],
+    "Singular Value Decomposition": [
+        "svd",
+        "singular_value_decomposition"
+    ],
+    "T-Distributed Stochastic Neighbor Embedding": [
+        "tsne",
+        "t_sne",
+        "t-distributed_stochastic_neighbor_embedding"
+    ],
+    "Latent Dirichlet Allocation": [
+        "lda",
+        "latent_dirichlet_allocation"
+    ],
+    "XGBoost": [
+        "xgboost"
+    ],
+    "LightGBM": [
+        "lightgbm",
+        "lgbm"
+    ],
+    "CatBoost": [
+        "catboost"
+    ],
+    "One-Hot Encoding": [
+        "onehotencoding",
+        "one_hot_encoding",
+        "onehot"
+    ],
+    "TF-IDF": [
+        "tfidf",
+        "tf_idf",
+        "term_frequency_inverse_document_frequency"
+    ],
+    "CNN": [
+        "cnn",
+        "convolutional_neural_network"
+    ],
+    "RRN": [
+        "rnn",
+        "Recurrent Neural Network",
+        "recurrent_neural_network"
+    ],
+    "LSTM": [
+        "lstm",
+        "Long Short-Term Memory",
+        "long_short_term_memory"
+    ],
+    "GRU": [
+        "gru",
+        "Gated Recurrent Unit",
+        "gated_recurrent_unit"
+    ],
+    "GPT": [
+        "gpt",
+        "Generative Pre-trained Transformer",
+        "Generative Pretrained Transformer"
+    ],
+    "GPT-3": [
+        "gpt3",
+        "gpt_3"
+    ],
+    "GPT-4": [
+        "gpt4",
+        "gpt_4"
+    ],
+    "BERT": [
+        "bert"
+    ],
+    "RoBERTa": [
+        "roberta"
+    ],
+    "DistilBERT": [
+        "distilbert"
+    ],
+    "Claude": [
+        "claude"
+    ],
+    "Mistral": [
+        "mistral"
+    ],
+    "Gemini": [
+        "gemini"
+    ],
+    "Stable Diffusion": [
+        "stable_diffusion",
+        "stablediffusion"
+    ],
+    "DALL-E": [
+        "dalle",
+        "dall_e",
+        "dall-e"
+    ],
+    "PaLM": [
+        "palm"
+    ],
+    "DeBERTa": [
+        "deberta"
+    ],
+    "GCN": [
+        "gcn",
+        "graph_convolutional_network"
+    ],
+    "GAT": [
+        "gat",
+        "graph_attention_network"
+    ],
+    "GraphSAGE": [
+        "graphsage"
+    ],
+    "ChebNet": [
+        "chebnet",
+        "chebyshev_network"
+    ],
+    "DGL": [
+        "dgl",
+        "Deep Graph Library"
+    ],
+    "PyG": [
+        "pyg",
+        "PyTorch Geometric"
+    ],
+    "GNN": [
+        "gnn",
+        "graph_neural_network"
+    ],
+    "PinSAGE": [
+        "pinsage"
+    ],
+    "DiffPool": [
+        "diffpool"
+    ],
+    "GIN": [
+        "gin",
+        "graph_isomorphism_network"
     ]
 }

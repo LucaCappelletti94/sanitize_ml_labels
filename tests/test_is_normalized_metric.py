@@ -20,11 +20,9 @@ def test_is_normalized_metric():
             "recall_6",
             "F1Score",
             "F1 Score",
-            "F1 score"
+            "F1 score",
         ],
-        False: [
-            "MLP", "Relu"
-        ]
+        False: ["MLP", "Relu"],
     }
 
     for expected, metrics in tests.items():
