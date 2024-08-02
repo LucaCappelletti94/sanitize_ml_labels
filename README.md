@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/LucaCappelletti94/sanitize_ml_labels/blob/master/LICENSE)
 [![CI](https://github.com/LucaCappelletti94/sanitize_ml_labels/actions/workflows/python.yml/badge.svg)](https://github.com/LucaCappelletti94/sanitize_ml_labels/actions)
 
-Sanitize ML Labels is a Python package designed to standardize and sanitize ML-related labels.
+Sanitize ML Labels is a Python package designed to standardize and sanitize ML-related labels. Currently supports over 100 labels, including metric and model names.
 
 If you have ML-related labels, and you find yourself renaming and sanitizing them in a consistent manner, with the proper capitalizaton, this package ensures they are always sanitized in a standard way.
 
