@@ -25,6 +25,7 @@ jobs:
         run: |
             pip install --upgrade pip
             pip install black
+            pip install setuptools wheel
             pip install ".[test]" # Or -r requirements.txt
 
       - name: Lint with black
