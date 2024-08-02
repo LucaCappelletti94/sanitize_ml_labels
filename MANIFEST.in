@@ -1,2 +1,3 @@
 include sanitize_ml_labels/*.json
 include sanitize_ml_labels/*.json.gz
+include LICENSE

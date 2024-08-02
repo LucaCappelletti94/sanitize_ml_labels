@@ -2,19 +2,12 @@
 
 [![PyPI](https://badge.fury.io/py/sanitize-ml-labels.svg)](https://badge.fury.io/py/sanitize-ml-labels)
 [![Downloads](https://pepy.tech/badge/sanitize-ml-labels)](https://pepy.tech/badge/sanitize-ml-labels)
-[
-    
-](
-    https://github.com/{username}/{repository}/actions/
-)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/LucaCappelletti94/sanitize_ml_labels/blob/master/LICENSE)
+![CI](https://github.com/LucaCappelletti94/sanitize-ml-labels/actions/workflows/python.yml/badge.svg)
 
-![CI](github.com/{user}/{repo}/actions/workflows/python.yml/badge.svg)
+Sanitize ML Labels is a Python package designed to standardize and sanitize ML-related labels.
 
-`sanitize_ml_labels` is a simple Python package designed to standardize and sanitize ML-related labels.
-
-## Why Do I Need This?
-
-If you have ML-related labels in plots or other contexts, and you find yourself renaming and sanitizing them in a consistent manner, this package ensures they are always sanitized in a standard way.
+If you have ML-related labels, and you find yourself renaming and sanitizing them in a consistent manner, this package ensures they are always sanitized in a standard way.
 
 ## How Do I Install This Package?
 

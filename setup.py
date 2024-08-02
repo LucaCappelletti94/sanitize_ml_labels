@@ -70,7 +70,7 @@ setup(
     ],
     # Add here the package dependencies
     install_requires=[
-        "compress_json",
+        "compress-json",
     ],
     extras_require={
         "test": [
