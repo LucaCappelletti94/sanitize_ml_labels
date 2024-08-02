@@ -101,6 +101,16 @@ print(is_absolutely_normalized_metric("MCC")) # True
 print(is_absolutely_normalized_metric("Markedness")) # True
 ```
 
-## New Features and Issues
+### Shoud be maximized
+Whether a metric should be maximized or minimized. Unknown metrics will raise a `NotImplementedError`.
 
-For new features or issues, you can open a new issue or submit a pull request. Pull requests are typically processed faster, but all issues will be reviewed when time permits.
+```python
+from sanitize_ml_labels import should_be_maximized
+
+assert not should_be_maximized("MSE")
+assert should_be_maximized("AUROC")
+assert should_be_maximized("accuracy")
+```
+
+## License
+This software is licensed under the MIT license. See the [LICENSE](https://github.com/LucaCappelletti94/sanitize_ml_labels/blob/master/LICENSE).
