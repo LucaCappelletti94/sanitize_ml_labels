@@ -40,8 +40,12 @@ labels = [
     "lr"
 ]
 
-print(sanitize_ml_labels(labels))
-# Output: ["Accuracy", "Loss", "AUROC", "Learning rate"]
+assert sanitize_ml_labels(labels) == [
+    "Accuracy",
+    "Loss",
+    "AUROC",
+    "Learning rate"
+]
 ```
 
 ### Example for Models

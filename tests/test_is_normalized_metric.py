@@ -1,7 +1,10 @@
-from sanitize_ml_labels import is_normalized_metric
+"""Tests for the is_normalized_metric function."""
+
+from sanitize_ml_labels import is_normalized_metric, sanitize_ml_labels
 
 
 def test_is_normalized_metric():
+    """Test the is_normalized_metric function."""
     tests = {
         True: [
             "acc",
@@ -27,4 +30,7 @@ def test_is_normalized_metric():
 
     for expected, metrics in tests.items():
         for metric in metrics:
-            assert is_normalized_metric(metric) == expected
+            normalized_metric_name = sanitize_ml_labels(metric)
+            assert (
+                is_normalized_metric(metric) == expected
+            ), f"Expected normalize status to be {expected} for {metric} ({normalized_metric_name})"

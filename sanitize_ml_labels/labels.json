@@ -250,8 +250,9 @@
     "Adamic-Adar": [
         "AdamicAdar"
     ],
-    "Mean Absolute Error": [
+    "MAE": [
         "mae",
+        "Mean Absolute Error",
         "mean_absolute_error"
     ],
     "Root Mean Square Error": [

@@ -149,7 +149,6 @@ def apply_replace_defaults(
     }
     new_labels = []
     for label in labels:
-        print("LABEL", label)
         replace_candidates = []
         for default, targets in defaults.items():
             for target in targets:
@@ -168,8 +167,6 @@ def apply_replace_defaults(
         # If a smaller candidate default is fully contained in another
         # larger candidate default, we remove the smaller candidate default.
 
-        print("BEFORE", replace_candidates)
-
         replace_candidates = [
             (target, val)
             for i, (target, val) in enumerate(replace_candidates)
@@ -180,12 +177,9 @@ def apply_replace_defaults(
             replace_candidates, key=lambda x: len(x[0]), reverse=True
         )
 
-        print("AFTER", replace_candidates)
-
         for target, default in replace_candidates:
             label = label.replace(target, default)
 
-        print("AFTER REPLACE", label)
         new_labels.append(label)
     return new_labels
 

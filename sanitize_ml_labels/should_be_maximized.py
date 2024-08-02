@@ -1,6 +1,6 @@
 """Module to determine whether a metric should be maximized or minimized."""
-import compress_json
-from .sanitize_ml_labels import sanitize_ml_labels
+
+from sanitize_ml_labels.is_normalized_metric import check_in_set, sanitize_ml_labels
 
 
 def should_be_maximized(metric_name: str) -> bool:
@@ -15,16 +15,14 @@ def should_be_maximized(metric_name: str) -> bool:
     ----------------------
     Boolean representing whether the provided metric should be maximized.
     """
-    sanized_metric_name = sanitize_ml_labels(metric_name)
-
-    if sanized_metric_name in compress_json.local_load("should_be_maximized.json"):
+    if check_in_set(metric_name, "should_be_maximized"):
         return True
 
-    if sanized_metric_name in compress_json.local_load("should_be_minimized.json"):
+    if check_in_set(metric_name, "should_be_minimized"):
         return False
 
     raise NotImplementedError(
-        f"The provided metric {metric_name}, sanitized to {sanized_metric_name}, "
+        f"The provided metric {metric_name}, sanitized to {sanitize_ml_labels(metric_name)}, "
         "if not currently supported. Please open an issue and relative pull request "
         "to add this metric to this method. Thanks!"
     )

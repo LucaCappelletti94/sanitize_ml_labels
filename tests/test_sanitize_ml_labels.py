@@ -17,6 +17,7 @@ def test_sanitize_ml_labels():
             "Precision",
             "Recall",
             "Recall",
+            "Categorical accuracy",
         ): [
             "acc",
             "accuracy",

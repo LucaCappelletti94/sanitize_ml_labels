@@ -1,9 +1,11 @@
 [
-    "Miss rate",
-    "Fall out",
-    "False discovery rate",
-    "False omission rate",
-    "Prevalence threshold",
-    "Threat score",
-    "MSE"
+    "miss rate",
+    "fall out",
+    "false discovery rate",
+    "false omission rate",
+    "prevalence threshold",
+    "threat score",
+    "mse",
+    "hamming loss",
+    "mae"
 ]
