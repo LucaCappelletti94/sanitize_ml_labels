@@ -9,7 +9,7 @@ Sanitize ML Labels is a Python package designed to standardize and sanitize ML-r
 
 If you have ML-related labels, and you find yourself renaming and sanitizing them in a consistent manner, with the proper capitalizaton, this package ensures they are always sanitized in a standard way.
 
-## How Do I Install This Package?
+## How do I install this package?
 
 You can install it using pip:
 
@@ -17,11 +17,11 @@ You can install it using pip:
 pip install sanitize_ml_labels
 ```
 
-## Usage Examples
+## Usage examples
 
 Here are some common use cases for normalizing labels:
 
-### Example for Metrics
+### Example for metrics
 
 ```python
 from sanitize_ml_labels import sanitize_ml_labels
@@ -41,7 +41,7 @@ assert sanitize_ml_labels(labels) == [
 ]
 ```
 
-### Example for Models
+### Example for models
 
 ```python
 from sanitize_ml_labels import sanitize_ml_labels
@@ -82,7 +82,7 @@ labels = [
 assert sanitize_ml_labels(labels) == ["MLP", "CNN", "FFNN", "Perceptron"]
 ```
 
-## Corner Cases
+## Corner cases
 
 Sometimes, you might encounter hyphenated terms that need to be correctly identified and normalized. We use a heuristic approach based on an [extended list of over 45K hyphenated English words](https://github.com/LucaCappelletti94/sanitize_ml_labels/blob/master/hyphenations.json.gz), originally from the [Metadata consulting website](https://metadataconsulting.blogspot.com/2019/07/An-extensive-massive-near-complete-list-of-all-English-Hyphenated-words.html).
 
@@ -95,7 +95,7 @@ from sanitize_ml_labels import sanitize_ml_labels
 assert sanitize_ml_labels("non-existent-edges-in-graph") == "Non-existent edges in graph"
 ```
 
-## Extra Utilities
+## Extra utilities
 
 In addition to label sanitization, the package provides methods to check metric normalization:
 
