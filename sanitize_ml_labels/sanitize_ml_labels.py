@@ -170,9 +170,11 @@ def apply_replace_defaults(
         replace_candidates = [
             (target, val)
             for i, (target, val) in enumerate(replace_candidates)
-            if all(target.lower() not in k.lower() for _, k in replace_candidates[i + 1 :])
+            if all(
+                target.lower() not in k.lower() for _, k in replace_candidates[i + 1 :]
+            )
         ]
-        
+
         replace_candidates = sorted(
             replace_candidates, key=lambda x: len(x[0]), reverse=True
         )

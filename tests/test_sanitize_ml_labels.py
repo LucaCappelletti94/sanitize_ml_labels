@@ -1,4 +1,5 @@
 """Tests for the sanitize_ml_labels function."""
+
 from sanitize_ml_labels import sanitize_ml_labels
 
 

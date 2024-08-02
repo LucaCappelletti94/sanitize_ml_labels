@@ -27,9 +27,7 @@ def test_should_be_maximized():
     # be executable in the should_be_maximized
     # method.
 
-    exceptions = [
-        "jaccard index"
-    ]
+    exceptions = ["jaccard index"]
 
     for metric in compress_json.load("sanitize_ml_labels/normalized_metrics.json"):
         # None of these metrics should raise an error

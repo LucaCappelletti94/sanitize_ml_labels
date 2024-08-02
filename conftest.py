@@ -4,12 +4,4 @@ import os
 from pytest_readme import setup
 
 setup()
-os.rename(
-    "test_readme.py",
-    "tests/test_readme.py"
-)
-
-
-
-
-
+os.rename("test_readme.py", "tests/test_readme.py")
