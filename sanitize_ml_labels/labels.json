@@ -446,5 +446,25 @@
     "GIN": [
         "gin",
         "graph_isomorphism_network"
+    ],
+    "RDKit": [
+        "rdkit",
+        "RDKit",
+        "RDKIT"
+    ],
+    "InChI": [
+        "inchi",
+        "InChI",
+        "INCHI"
+    ],
+    "InChIKey": [
+        "inchikey",
+        "InChIKey",
+        "INCHIKEY"
+    ],
+    "SMILES": [
+        "smiles",
+        "SMILES",
+        "Simplified Molecular Input Line Entry System"
     ]
 }
