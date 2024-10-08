@@ -272,7 +272,6 @@
         "hinge_loss"
     ],
     "R-Squared": [
-        "r2",
         "r_squared",
         "r2_score"
     ],
