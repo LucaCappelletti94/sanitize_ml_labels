@@ -465,5 +465,11 @@
         "smiles",
         "SMILES",
         "Simplified Molecular Input Line Entry System"
+    ],
+    "Ghose-Crippen": [
+        "ghose_crippen"
+    ],
+    "Klekota-Roth": [
+        "klekota_roth"
     ]
 }
