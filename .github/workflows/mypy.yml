@@ -25,4 +25,4 @@ jobs:
           pip install mypy  # Ensure mypy is installed
 
       - name: Run MyPy
-        run: mypy barplots/
+        run: mypy sanitize_ml_labels/
