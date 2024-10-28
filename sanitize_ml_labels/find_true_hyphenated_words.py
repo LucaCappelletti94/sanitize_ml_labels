@@ -1,6 +1,6 @@
 """Submodule providing functions to identify true hyphenated words from the english language."""
 
-from typing import List
+from typing import List, Tuple
 import compress_json
 
 
@@ -17,7 +17,7 @@ def find_true_hyphenated_words(lowercase_label: str) -> List[str]:
     This function was authored by Tommaso Fontana.
     You can see [his GitHub profile here](https://github.com/zommiommy)
     """
-    stack = []
+    stack: List[Tuple[str, str]] = []
     result = []
     words_index = compress_json.local_load(
         "hyphenated_words_index.json.gz", use_cache=True

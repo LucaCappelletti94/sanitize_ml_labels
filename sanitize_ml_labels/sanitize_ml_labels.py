@@ -1,6 +1,6 @@
 """Module to sanitize machine learning labels."""
 
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Optional, Tuple, Any
 import re
 import compress_json
 from sanitize_ml_labels.find_true_hyphenated_words import find_true_hyphenated_words
@@ -30,7 +30,7 @@ def consonants_to_upper(label: str) -> str:
     )
 
 
-def targets_to_spaces(label: str, targets: List[str]) -> str:
+def targets_to_spaces(label: str, targets: Union[Tuple[str, ...], List[str]]) -> str:
     """Return given label with consonants groups to uppercase.
 
     Examples
@@ -42,7 +42,7 @@ def targets_to_spaces(label: str, targets: List[str]) -> str:
     ----------
     label: str
         label to parse.
-    targets: List[str]
+    targets: Union[Tuple[str, ...], List[str]]
         list of targets to replace to spaces.
 
     Returns
@@ -232,16 +232,16 @@ def to_string(labels: List) -> List[str]:
 
 
 def sanitize_ml_labels(
-    labels: Union[List[str], str],
+    labels: Union[List[Any], Any],
     upper_case_consonants_clusters: bool = True,
-    replace_with_spaces: List[str] = ("-", "_", ":", "<", ">"),
+    replace_with_spaces: Union[Tuple[str, ...], List[str]] = ("-", "_", ":", "<", ">"),
     detect_and_remove_homogeneous_descriptors: bool = True,
     detect_and_remove_trailing_zeros: bool = True,
     replace_defaults: bool = True,
     soft_capitalization: bool = True,
     preserve_true_hyphenation: bool = True,
     maximum_resolution: int = 3,
-    custom_defaults: Dict[str, Union[List[str], str]] = None,
+    custom_defaults: Optional[Dict[str, Union[List[str], str]]] = None,
 ) -> Union[List[str], str]:
     """Return sanitized labels in standard way.
 
@@ -283,10 +283,12 @@ def sanitize_ml_labels(
         is_iterable = False
 
     single_label = not is_iterable or isinstance(labels, str)
-    if single_label:
-        labels = [labels]
+    if is_iterable and not isinstance(labels, str):
+        normalized_labels: List[Any] = labels
+    else:
+        normalized_labels = [labels]
 
-    labels = to_string(labels)
+    string_labels: List[str] = to_string(normalized_labels)
 
     if detect_and_remove_homogeneous_descriptors:
         generic_words_cooccurring_with_descriptors = compress_json.local_load(
@@ -294,28 +296,29 @@ def sanitize_ml_labels(
         )
         for descriptor in compress_json.local_load("descriptors.json"):
             if have_descriptor(
-                labels, descriptor, generic_words_cooccurring_with_descriptors
+                string_labels, descriptor, generic_words_cooccurring_with_descriptors
             ):
-                labels = remove_descriptor(labels, descriptor)
+                string_labels = remove_descriptor(string_labels, descriptor)
 
     if soft_capitalization:
-        labels = apply_soft_capitalization(labels)
+        string_labels = apply_soft_capitalization(string_labels)
 
     if replace_defaults:
         if custom_defaults is None:
-            custom_defaults = dict()
+            custom_defaults = {}
 
-        custom_defaults = dict(
-            [
-                (key, value) if isinstance(value, list) else (key, [value])
-                for key, value in custom_defaults.items()
-            ]
+        normalized_custom_defaults: Dict[str, List[str]] = {
+            key: value if isinstance(value, list) else [value]
+            for key, value in custom_defaults.items()
+        }
+
+        string_labels = apply_replace_defaults(
+            string_labels, normalized_custom_defaults
         )
-        labels = apply_replace_defaults(labels, custom_defaults)
 
-    if detect_and_remove_trailing_zeros and are_real_values_labels(labels):
-        labels = sanitize_real_valued_labels(
-            labels, maximum_resolution=maximum_resolution
+    if detect_and_remove_trailing_zeros and are_real_values_labels(string_labels):
+        string_labels = sanitize_real_valued_labels(
+            string_labels, maximum_resolution=maximum_resolution
         )
     else:
 
@@ -326,13 +329,13 @@ def sanitize_ml_labels(
         need_to_run_hyphenation_check = (
             "-" in replace_with_spaces
             and preserve_true_hyphenation
-            and any("-" in label for label in labels)
+            and any("-" in label for label in string_labels)
         )
 
         if need_to_run_hyphenation_check:
             new_labels = []
-            hyphenated_words = []
-            for label in labels:
+            hyphenated_words: List[str] = []
+            for label in string_labels:
                 if "-" in label:
                     lowercase_label = label.lower()
                     true_hyphenated_words = find_true_hyphenated_words(lowercase_label)
@@ -355,28 +358,30 @@ def sanitize_ml_labels(
 
             # We update the current labels with the new labels
             # that are now wrapped to avoid to remove hyphenated words.
-            labels = new_labels
+            string_labels = new_labels
 
-        labels = [targets_to_spaces(label, replace_with_spaces) for label in labels]
+        string_labels = [
+            targets_to_spaces(label, replace_with_spaces) for label in string_labels
+        ]
 
-        labels = clear_spaces(labels)
+        string_labels = clear_spaces(string_labels)
 
         # We now need to restore the hyphenated words which we have
         # previously wrapped, if we have done so.
         if need_to_run_hyphenation_check:
             restored_labels = []
-            for label in labels:
+            for label in string_labels:
                 for number, hyphenated_word in enumerate(hyphenated_words):
                     label = label.replace(f"{{word{number}}}", hyphenated_word)
                 restored_labels.append(label)
-            labels = restored_labels
+            string_labels = restored_labels
 
         if soft_capitalization:
-            labels = apply_soft_capitalization(labels)
+            string_labels = apply_soft_capitalization(string_labels)
 
         if upper_case_consonants_clusters:
-            labels = [consonants_to_upper(label) for label in labels]
+            string_labels = [consonants_to_upper(label) for label in string_labels]
 
     if single_label:
-        return labels[0]
-    return labels
+        return string_labels[0]
+    return string_labels
