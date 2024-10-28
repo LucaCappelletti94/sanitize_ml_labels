@@ -1,3 +1,3 @@
 """Current version of package sanitize_ml_labels."""
 
-__version__ = "1.1.3"
+__version__ = "1.1.4"
