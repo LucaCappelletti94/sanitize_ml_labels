@@ -174,7 +174,8 @@ def apply_replace_defaults(
             (target, val, regex)
             for i, (target, val, regex) in enumerate(replace_candidates)
             if all(
-                target.lower() not in k.lower() for _, k, _ in replace_candidates[i + 1 :]
+                target.lower() not in k.lower()
+                for _, k, _ in replace_candidates[i + 1 :]
             )
         ]
 
