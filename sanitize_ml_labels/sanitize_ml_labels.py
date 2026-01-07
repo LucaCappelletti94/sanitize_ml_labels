@@ -133,7 +133,10 @@ def sanitize_real_valued_labels(
 
 def remove_descriptor(labels: List[str], descriptor: str) -> List[str]:
     """Return list of labels without the term descriptor"""
-    return [label.replace(descriptor, "") for label in labels]
+    # Escaping descriptor to avoid issues with special characters
+    descriptor = re.escape(descriptor)
+    # We remove the descriptor and any separator that might follow it
+    return [re.sub(f"{descriptor}[\\.\\-_:\\s]?", "", label) for label in labels]
 
 
 def apply_replace_defaults(
@@ -156,7 +159,7 @@ def apply_replace_defaults(
                 matches = regex.findall(label)
                 if bool(matches):
                     for match in matches:
-                        replace_candidates.append((match, default))
+                        replace_candidates.append((match, default, regex))
 
         # The following is required to avoid replacing substrings.
 
@@ -168,10 +171,10 @@ def apply_replace_defaults(
         # larger candidate default, we remove the smaller candidate default.
 
         replace_candidates = [
-            (target, val)
-            for i, (target, val) in enumerate(replace_candidates)
+            (target, val, regex)
+            for i, (target, val, regex) in enumerate(replace_candidates)
             if all(
-                target.lower() not in k.lower() for _, k in replace_candidates[i + 1 :]
+                target.lower() not in k.lower() for _, k, _ in replace_candidates[i + 1 :]
             )
         ]
 
@@ -179,8 +182,8 @@ def apply_replace_defaults(
             replace_candidates, key=lambda x: len(x[0]), reverse=True
         )
 
-        for target, default in replace_candidates:
-            label = label.replace(target, default)
+        for target, default, regex in replace_candidates:
+            label = regex.sub(default, label)
 
         new_labels.append(label)
     return new_labels

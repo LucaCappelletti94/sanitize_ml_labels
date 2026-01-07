@@ -40,7 +40,6 @@
         "TPs"
     ],
     "False positives": [
-        "FP",
         "FPs"
     ],
     "True negatives": [

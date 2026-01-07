@@ -2,5 +2,14 @@
     "matthews correlation coefficient",
     "markedness",
     "cosine similarity",
-    "cosine distance"
+    "cosine distance",
+    "pearson correlation coefficient",
+    "spearman correlation coefficient",
+    "spearman rank correlation coefficient",
+    "polychoric correlation coefficient",
+    "kendall rank correlation coefficient",
+    "kendall tau correlation coefficient",
+    "kendall correlation coefficient",
+    "kenall tau correlation coefficient",
+    "biserial correlation coefficient"
 ]

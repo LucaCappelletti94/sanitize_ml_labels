@@ -38,6 +38,11 @@ def test_sanitize_ml_labels():
             "vanilla ffnn   ",
             "vanilla cae",
         ],
+        ("Users", "Data", "Info"): [
+            "public.users",
+            "public.data",
+            "public.info",
+        ],
         ("Has gene product", "Interacts with", "subPropertyOf", "Other"): [
             "biolink:has_gene_product",
             "biolink:interacts_with",
@@ -77,6 +82,9 @@ def test_sanitize_ml_labels():
             "Non-existent",
             "non-existent-edges non-esistent",
             "non-existent-edges-in-graph",
+        ],
+        ("Include SKFP mordred FP fingerprint",): [
+            "include_skfp_mordred_fp_fingerprint"
         ],
         ("1", "2", "3"): ["1.00000", "2.00", "3.0"],
         ("-1", "-2", "-3"): ["-1.00000", "-2.00", "-3.0"],

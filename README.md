@@ -140,6 +140,7 @@ assert is_absolutely_normalized_metric("Markedness")
 ```
 
 ### Shoud be maximized
+
 Whether a metric should be maximized or minimized. Unknown metrics will raise a `NotImplementedError`.
 
 ```python
@@ -151,4 +152,5 @@ assert should_be_maximized("accuracy")
 ```
 
 ## License
+
 This software is licensed under the MIT license. See the [LICENSE](https://github.com/LucaCappelletti94/sanitize_ml_labels/blob/master/LICENSE).
